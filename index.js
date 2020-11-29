@@ -1,11 +1,4 @@
-//https://www.youtube.com/watch?v=fPT5d1BqyjQ
-
-//Using yarn -same as npm but faster
-//webpack also needed to be downloaded
-//use react
-
-//babel (compiler / converts code to the code that kan be supported by older browsers
-
+//Creating server, with video from week 40
 const express = require('express'); // Henter hele pakken express
 const server = express();// definere at appen er en express app - og har nu mulighed for at bruge alle de funktioner der er i.
 
