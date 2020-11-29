@@ -1,6 +1,7 @@
 //Creating server, with video from week 40
 const express = require('express'); // Henter hele pakken express
 const server = express();// definere at appen er en express app - og har nu mulighed for at bruge alle de funktioner der er i.
+const fs = require('fs');
 
 
 // To get static files, use the express.static middleware from express module
