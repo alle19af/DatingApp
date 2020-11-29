@@ -5,6 +5,8 @@ import { v4 as uuidv4 } from 'uuid';
 // USer array have one objekt / MOCK USER DATABASE
 let users = [];
 
+// 0.1 Go to page create account
+
 // 1. Get method , takes us to the user page
 export const getUser = (req,res) => {
     

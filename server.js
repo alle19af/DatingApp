@@ -15,10 +15,23 @@ express.static('view'); // THis is a root argument, specifies which root directo
 server.use(express.static('view'));
 
 // endpoint er her: /index.html, and when put under the domain - its : HTTP://localhost:3000/index
-server.get('/view', function(req, res){  // Hver gang denne path med http verb bliver kaldt, så vil vi starte en fubnktion med 2 parametrer, req & res
+server.get('/', function(req, res){  // Hver gang denne path med http verb bliver kaldt, så vil vi starte en fubnktion med 2 parametrer, req & res
      console.log('Server virker nu'); // simpelt end point og simpelt api
 });                                 // hver gang der kommer en get request, sender vi hello word ud til browseren, som er en en streng.
 
+
+server.post("/user", (req,res) => {
+     let student = { 
+     firstName: req.body.firstName,
+     lastname: req.body.lastname,
+    description: req.body.lastname,
+     password: req.body.password
+     
+   };
+
+   let dataarray = JSON.parse(fs.readFileSync('/model/user.JSON'))
+dataarray.push(student);
+});
 
 server.listen(5000); // server bliver defineret, her og bliver bedt om at lytte til port 3000
 
@@ -26,3 +39,4 @@ server.listen(5000); // server bliver defineret, her og bliver bedt om at lytte 
 // the endpoint generally is what is supposed to be called by a request, what you provide as an interface to your API consumers
 
 //REST API uses four different HTTP 1.1 verbs (GET, POST, PUT, and DELETE) to perform tasks.
+
