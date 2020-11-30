@@ -1,6 +1,8 @@
+
+
+const form = document.querySelector('form');
 const loginDiv = document.querySelector('.login');
 const logoutDiv = document.querySelector('.logout');
-const form = document.querySelector('form');
 const nameInput = document.querySelector('#firstname');
 const lastnameInput = document.querySelector('#lastname');
 
@@ -12,14 +14,16 @@ const h1 = document.querySelector('h1');
 const personalGreeting = document.querySelector('.personal-greeting');
 const personalInfo = document.querySelector('.personal-information');
 
-class User {
-    constructor(firstname, lastname, description, password){
-        this.firstName = firstname;
-        this.lastname = lastname;
-        this.description = description;
-        this.password = password;
-    }
-}
+// --------------- FOR JSON--------------
+// class User {
+//     constructor(firstname, lastname, description, password){
+//         this.firstName = firstname;
+//         this.lastname = lastname;
+//         this.description = description;
+//         this.password = password;
+//     }
+//}
+
 //sikre at submit knap kan gøre som vi vil og ikke som default adfærd
 form.addEventListener('submit', function(e){
     e.preventDefault();
@@ -33,8 +37,9 @@ loginBtn.addEventListener('click', function(){
     localStorage.setItem('kodeord', passCodeInput.value);
     nameDisplayCheck() //køre denne funktion hver gang knappen trykkes på
 
-    let newUser = new User(firstname, lastname, description, password);
-            uploadUser(newUser);
+//-----------------FOR JSON-----------------------------------
+    // let newUser = new User(firstname, lastname, description, password);
+    //         uploadUser(newUser);
         
 });
 
@@ -67,23 +72,27 @@ function nameDisplayCheck(){
     }
 }
 
-function uploadUser(user){
+// ---------------------FOR JSON--------------
+// function uploadUser(user){
     
-    fetch('http://localhost:5000/', {
-      method: 'POST', // or 'PUT'
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(user),
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Success:', data);
+//     fetch('http://localhost:4000/', {
+//       method: 'POST', // or 'PUT'
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify(user),
+//     })
+//     .then(response => response.json())
+//     .then(data => {
+//       console.log('Success:', data);
       
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
-    }
+//     })
+//     .catch((error) => {
+//       console.error('Error:', error);
+//     });
+//     }
 
+//For create user page -with localstorage
 document.body.onload = nameDisplayCheck;
+let hi = console.log("hi");
+module.exports = hi;

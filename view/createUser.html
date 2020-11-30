@@ -4,15 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dating App</title>
-    <script src="scripts.js" defer></script>
+    <script src="user.js" defer></script> 
 </head>
 <body>
     <h1>Welcome to the worlds greatest Dating app</h1>
 <!--------Getting localstorage from example of localstorage week 42-->
 <form>
-    <div class="newuser">
-        
-    </div>
+   
     <div class="login">
         <label for="firstname">Fornavn:</label>
         <input id="firstname" type="text" required>
@@ -21,16 +19,20 @@
         
         <label for="description">Lidt om dig:</label>
         <input id="description" type="text" required>
-        <label for="skrivkode">Skriv dit kodeord:</label>
+        <label for="password">Skriv dit kodeord:</label>
         <input id="password" type="password" required>
-        <input id="submitlogin" type="submit" value="login">
+        
+            <input id="submitlogin" type="submit" value="login">
+        
     </div>
     <div class="logout">
         <label for="logout">Log ud: </label>
+        
         <input id="submitlogout" type="reset" value="logout">
+        
     </div>
 </form>
-<label for="login">Go back to frontpage</label>
+<label for="frontpage">Go back to frontpage</label>
         <a href="/">
         <input id="submit" type="button" value="Go back">
         </a>
