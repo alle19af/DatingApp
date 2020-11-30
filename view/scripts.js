@@ -69,7 +69,7 @@ function nameDisplayCheck(){
 
 function uploadUser(user){
     
-    fetch('http://localhost:5000/user', {
+    fetch('http://localhost:5000/', {
       method: 'POST', // or 'PUT'
       headers: {
         'Content-Type': 'application/json',
