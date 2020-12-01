@@ -14,17 +14,19 @@ server.use(bodyParser.json()); // state that we use json data in the application
 // To get static files, use the express.static middleware from express module
 
 //function signature:
-express.static('/view'); // THis is a root argument, specifies which root directory to serve static assets
+express.static('/client'); // THis is a root argument, specifies which root directory to serve static assets
 //Vi kan kalde app og har mulighed for at skrive GET HTTP verb, og definere denne path som den skal reagere på
 
 
-//makes it possible to go to all static sides in my folder view
-server.use(express.static('view')); //https://expressjs.com/en/starter/static-files.html
+// //makes it possible to go to all static sides in my folder view
+server.use(express.static('client')); //https://expressjs.com/en/starter/static-files.html
+
+
 
 // endpoint er her: /, and when put under the domain - its : HTTP://localhost:4000
 server.get('/', function(req, res){  // Hver gang denne path med http verb bliver kaldt, så vil vi starte en fubnktion med 2 parametrer, req & res
      
-     fs.readFile(__dirname + '/view/frontPage.html', 'utf8', function(err, text){
+     fs.readFile(__dirname + '/client/frontPage.html', 'utf8', function(err, text){
           res.send(text);
       });// hver gang der kommer en get request, sender vi frontpage ud til browseren, som er en en html fil.
 });   

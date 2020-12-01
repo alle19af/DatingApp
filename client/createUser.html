@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dating App</title>
+    <script src="/js/createUser.js" defer></script> 
+</head>
+<body>
+    <h1>Welcome to the worlds greatest Dating app</h1>
+    <!--------Getting localstorage from example of localstorage week 42-->
+    <form>
+    
+        <div class="createUser">
+            <label for="username">Username:  </label><br>
+            <input id="username" type="text" required><br><br>
+            <label for="firstname">Firstname:  </label><br>
+            <input id="firstname" type="text" required><br><br>
+            <label for="lastname">Lastname :</label><br>
+            <input id="lastname" type="text" required><br><br>
+            <label for="mail">Mail :</label><br>
+            <input id="mail" type="mail" required><br><br>
+            <label for="age"> Age: </label><br>
+            <input id="age" type="text" required><br><br>
+            <label for="description">About you(Can be filled out later):</label><br>
+            <input id="description" type="text"><br><br>
+            <label for="password">Password:</label><br>
+            <input id="password" type="password" required><br><br>
+            
+            <input id="submitUser" type="submit" value="Create user">
+        </div><br>
+        
+        <!-----------After creating a user they will automatically be logged in-->
+        <div class="logout">
+            <label for="logout">Log ud: </label>
+            <input id="submitlogout" type="reset" value="logout"> 
+        </div>
+    </form>
+
+    <!---------------REturn to  main page-------------------->
+    <label for="frontpage">Go back to frontpage</label>
+        <a href="/">
+            <input id="submit" type="button" value="Go back">
+        </a>
+    <!-----------------After login greeting-------------->
+    <main>
+        <p class="personal-greeting">
+            Velkommen til vores hjemmeside
+        </p>
+        <p class="personal-information">
+
+        </p>
+    </main>
+    <footer>
+        Denne hjemmeside er lavet af alex
+    </footer>
+</body>
+</html>
