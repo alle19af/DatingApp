@@ -1,8 +1,46 @@
 [
-    {
-        "firstName": "d",
-        "lastname": "d",
-        "description": "d",
-        "password": "d"
-    }
+  {
+    "mail": "alex@msn.com",
+    "firstname": "alex",
+    "lastname": "gonzalez",
+    "age": "38",
+    "description": "Jeg er sød",
+    "password": "1234"
+  },
+  {
+    "mail": "johanoulis@gmail.com",
+    "firstname": "johan",
+    "lastname": "athanas",
+    "age": "40",
+    "description": "Jeg er sjov",
+    "password": "6666"
+  },
+  {
+    "mail": "alexandra2211@msn.com",
+    "firstName": "Alexandra",
+    "lastname": "Gonzalez",
+    "description": "Jeg er lækker",
+    "password": "Mini37"
+  },
+  {
+    "mail": "alexandra2211@msn.com",
+    "firstName": "Alexandra",
+    "lastname": "Gonzalez",
+    "description": "Jeg er lækker",
+    "password": "Mini37"
+  },
+  {
+    "mail": "alexandra2211@msn.com",
+    "firstName": "Alexandra",
+    "lastname": "Gonzalez",
+    "description": "Jeg er lækker",
+    "password": "Mini37"
+  },
+  {
+    "mail": "alexandra2211@msn.com",
+    "firstName": "Alexandra",
+    "lastname": "Gonzalez",
+    "description": "Jeg er lækker",
+    "password": "Mini37"
+  }
 ]

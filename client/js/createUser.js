@@ -5,7 +5,6 @@ const logoutDiv = document.querySelector('.logout');
 const usernameInput = document.querySelector('#username');
 const nameInput = document.querySelector('#firstname');
 const lastnameInput = document.querySelector('#lastname');
-const mailInput = document.querySelector('#mail');
 const ageInput = document.querySelector('#age');
 const descrInput = document.querySelector('#description');
 const passCodeInput = document.querySelector('#password');
@@ -16,14 +15,15 @@ const personalGreeting = document.querySelector('.personal-greeting');
 const personalInfo = document.querySelector('.personal-information');
 
 // --------------- FOR JSON--------------
-// class User {
-//     constructor(firstname, lastname, description, password){
-//         this.firstName = firstname;
-//         this.lastname = lastname;
-//         this.description = description;
-//         this.password = password;
-//     }
-//}
+class User {
+    constructor(mail, firstname, lastname, description, password){
+        this.mail = mail;
+        this.firstName = firstname;
+        this.lastname = lastname;
+        this.description = description;
+        this.password = password;
+    }
+};
 
 //sikre at submit knap kan gøre som vi vil og ikke som default adfærd
 form.addEventListener('submit', function(e){
@@ -35,7 +35,6 @@ loginBtn.addEventListener('click', function(){
     localStorage.setItem('brugernavn', usernameInput.value);
     localStorage.setItem('fornavn', nameInput.value);
     localStorage.setItem('efternavn', lastnameInput.value);
-    localStorage.setItem('email', mailInput.value);
     localStorage.setItem('alder', ageInput.value);
     localStorage.setItem('beskrivelse', descrInput.value);
     localStorage.setItem('kodeord', passCodeInput.value);
@@ -52,7 +51,6 @@ logoutBtn.addEventListener('click', function(){
     localStorage.removeItem('brugernavn');
     localStorage.removeItem('fornavn');
     localStorage.removeItem('efternavn');
-    localStorage.removeItem('email');
     localStorage.removeItem('alder');
     localStorage.removeItem('beskrivelse');
     localStorage.removeItem('kodeord');
@@ -62,18 +60,31 @@ logoutBtn.addEventListener('click', function(){
 //------------------ved tryk på submit user  kør denne funktion--------------
 function nameDisplayCheck(){
     if(localStorage.getItem('fornavn')){
-        let username = localStorage.getItem('brugernavn');
-        let name = localStorage.getItem('fornavn');
+        let mail = localStorage.getItem('brugernavn');
+        let firstname = localStorage.getItem('fornavn');
         let lastname = localStorage.getItem('efternavn');
-        let mail = localStorage.getItem('email');
         let age = localStorage.getItem('alder');
         let description= localStorage.getItem('beskrivelse');
-        let code = localStorage.getItem('kodeord');
-        h1.textContent = "Velkommen "+ name  + " " +lastname;
-        personalGreeting.textContent = "Velkommen til vores hjemmeside " + name;
-        personalInfo.textContent = " Her er lidt info om dig " + name + " : Din alder er " + age + ", din mail er:  " + mail + ".  " +  ". Dit valgte kodeord er: " + code;
+        let password = localStorage.getItem('kodeord');
+        h1.textContent = "Velkommen "+ firstname  + " " +lastname;
+        personalGreeting.textContent = "Velkommen til vores hjemmeside " + firstname;
+        personalInfo.textContent = " Her er lidt info om dig " + firstname + " : Din alder er " + age + ", din mail er:  " + mail + ".  " +  ". Dit valgte kodeord er: " + password;
         logoutDiv.style.display = 'block';
         loginDiv.style.display = 'none';
+
+        const user = new User(mail, firstname, lastname, description, password);
+
+        const option = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+        }, 
+        body: JSON.stringify(user),
+        
+        };    
+        console.log(user);
+        fetch('http://localhost:4000/createUser', option)
+
         //hvis ikke den eksistere
     } else {
         h1.textContent = "Velkommen stranger";
