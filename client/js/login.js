@@ -56,7 +56,7 @@ logout.addEventListener('click', function(){
 //------------------ved tryk på submit user  kør denne funktion--------------
 function userNameDisplayCheck(){
     if(localStorage.getItem('brugernavn')){
-        let username = localStorage.getItem('kodeord');
+        let username = localStorage.getItem('fornavn');
         // let name = localStorage.getItem('fornavn');
         // let lastname = localStorage.getItem('efternavn');
         // let mail = localStorage.getItem('email');

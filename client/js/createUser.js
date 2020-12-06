@@ -88,8 +88,8 @@ function nameDisplayCheck(){
         //hvis ikke den eksistere
     } else {
         h1.textContent = "Velkommen stranger";
-        personalGreeting.textContent = "Hej person som jeg ikke kender endnu"
-        personalInfo.textContent = "Vi har ingen info om dig, før du er logget ind!"
+        personalGreeting.textContent = "Du er ikke logget ind endnu"
+        personalInfo.textContent = "Vi har ingen info om dig, Opret en bruger eller login"
         logoutDiv.style.display = 'none';
         loginDiv.style.display = 'block';
     }

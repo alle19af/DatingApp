@@ -28,18 +28,81 @@ const login = function(req, res){  // Hver gang denne path med http verb bliver 
 const getInput = function(req, res){
     console.log('test test i controller')
     storage.push(req.body) // skubber body ind i vores storageObject
-        
-    //laver vores storage object til  string og indsætter i JSON   
-    fs.writeFile('user.json', JSON.stringify(storage, null, 2), (err) => {
-        if (err) throw err;
-        console.log('Data written to file');
-    });
-    console.log(storage)
-};
+
+    ans ="";
+    let prop = req.body.mail;
+    let counter = 0;
+
+    for(var i=0; i <storage.length; i++){
+        console.log('test ' + storage[i].mail);
+        if(storage[i].mail == prop){
+            ans = "var 'obj' has " + prop + " property"; 
+            counter++;
+            
+        } else {
+            // console.log(storage)
+            ans = "var 'obj' doesnt have " + prop + " as property"; 
+        }
+        console.log(ans)
+        console.log(storage)
+     }
+     console.log("counter = " + counter)
+        if(counter == 0){
+                //laver vores storage object til  string og indsætter i JSON   
+            fs.writeFile('user.json', JSON.stringify(storage, null, 2), (err) => {
+                if (err) throw err;
+                console.log('Data written to file');
+            });
+        }
+
+    // ans ="";
+    // let prop = req.body.mail;
+    // if(storage.mail === prop){
+    //         ans = "var 'obj' has " + prop + " property";
+    //     }else {
+    //         ans = "var 'obj' doesnt have " + prop + " as property"; 
+    //                 //laver vores storage object til  string og indsætter i JSON   
+    //             fs.writeFile('user.json', JSON.stringify(storage, null, 2), (err) => {
+    //                 if (err) throw err;
+    //                 console.log('Data written to file');
+                    
+    //             });
+    //         }
+    //         console.log(ans)
+ };
 
 module.exports = {frontpage, createUser, login, getInput};
 
 
+//     console.log("this is " + prop)
+
+//     if( storage.hasOwnProperty(prop)){
+//         ans = "var 'obj' has " + prop + " property";
+//     } else {
+//         //laver vores storage object til  string og indsætter i JSON   
+//         fs.writeFile('user.json', JSON.stringify(storage, null, 2), (err) => {
+//             if (err) throw err;
+//             console.log('Data written to file');
+//         });
+//         ans = "var 'obj' doesnt have " + prop + " as property"; 
+//     }
+// console.log(ans)
+
+  // ans ="";
+    // var prop = req.body.mail;
+    // console.log(req.body.mail)
+    // console.log( storage)
+    // if(storage == storage.mail){
+    //     ans = "var 'obj' has " + prop + " property";
+    //     } else {
+    //         ans = "var 'obj' doesnt have " + prop + " as property"; 
+    //         //laver vores storage object til  string og indsætter i JSON   
+    //         fs.writeFile('user.json', JSON.stringify(storage, null, 2), (err) => {
+    //             if (err) throw err;
+    //             console.log('Data written to file');
+    //         });
+    //     }
+    //     console.log(ans);
 
 // // 0.1 Go to page create account
 
