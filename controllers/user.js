@@ -14,7 +14,7 @@ const frontpage = function(req, res){  // Hver gang denne path med http verb bli
 };
 
 const createUser = function(req, res){  // Hver gang denne path med http verb bliver kaldt, så vil vi starte en fubnktion med 2 parametrer, req & res
-    fs.readFile('./client/createUser.html', 'utf8', function(err, text){
+    fs.readFile('/Users/alexandral.gonzalez/Desktop/Eksamen/DatingApp/client/createUser.html', 'utf8', function(err, text){
          res.send(text);
      });// hver gang der kommer en get request, sender vi frontpage ud til browseren, som er en en html fil.
 };   
@@ -27,8 +27,6 @@ const login = function(req, res){  // Hver gang denne path med http verb bliver 
 
 // 03. Actions witd DB/ storage(skal rykkes til model)
 const getInput = function(req, res){
-    console.log('test test i controller')
-
     ans ="";
     let prop = req.body.mail;
     let counter = 0;
@@ -53,30 +51,20 @@ const getInput = function(req, res){
             //laver vores storage object til  string og indsætter i JSON   
         fs.writeFile('user.json', JSON.stringify(storage, null, 2), (err) => {
             if (err) throw err;
-            console.log('Data written to file');
+            console.log(prop + ' has been written to storage');
         });
     } else {
         console.log( "the user is taken")
     }
-    // ans ="";
-    // let prop = req.body.mail;
-    // if(storage.mail === prop){
-    //         ans = "var 'obj' has " + prop + " property";
-    //     }else {
-    //         ans = "var 'obj' doesnt have " + prop + " as property"; 
-    //                 //laver vores storage object til  string og indsætter i JSON   
-    //             fs.writeFile('user.json', JSON.stringify(storage, null, 2), (err) => {
-    //                 if (err) throw err;
-    //                 console.log('Data written to file');
-                    
-    //             });
-    //         }
-    //         console.log(ans)
+
  };
 
+ const deleteUser = function(req, res){
+
+ }
 
 
-module.exports = {frontpage, createUser, login, getInput};
+module.exports = {frontpage, createUser, login, getInput, deleteUser};
 
 
 

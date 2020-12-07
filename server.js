@@ -32,6 +32,8 @@ server.get('/Login', controller.login);
 
 server.post('/createUser', cors(), controller.getInput)// post fordi vi ønsker at sende data til server
 
+server.post('/createUser', controller.deleteUser);
+
 //---------------- Running server--------------------//
 server.listen(PORT, ()=> console.log(`The server runs on port: http://localhost:${PORT}`)); // server bliver defineret, her og bliver bedt om at lytte til port 3000
 

@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dating App</title>
-    <script src="/js/createUser.js" defer></script> 
+    
     <link href="./stylesheet/createuser.css" rel="stylesheet">
+    <script src="./js/localstorage.js" defer></script>
 </head>
 <body>
     <h1>Welcome to the worlds greatest Dating app</h1>
@@ -23,14 +24,17 @@
             <label for="description">About you(Can be filled out later):</label><br>
             <input id="description" type="text"><br><br>
             <label for="password">Password:</label><br>
-            <input id="password" type="password" required><br><br>
+            <input type="password" id="password" required><br><br>
             
             <input id="submitUser" type="submit" value="Create user">
         </div><br>
         
         <!-----------After creating a user they will automatically be logged in-->
-        <div class="logout">
-            <label for="logout">Log ud: </label>
+        <div class="changes">
+            <label for="delete">Delete user: </label>
+            <input id="delete" type="reset" value="Delete"> 
+            <br>
+            <label for="logout">Log out: </label>
             <input id="submitlogout" type="reset" value="logout"> 
         </div>
     </form>
