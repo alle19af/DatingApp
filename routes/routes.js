@@ -1,4 +1,7 @@
-// different routes
+// 01. Routes vil jeg ik bruge.
+
+
+
 // taget fra REST API example:
 
 // const express = require('express'); // Henter hele pakken express

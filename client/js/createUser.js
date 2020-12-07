@@ -82,8 +82,10 @@ function nameDisplayCheck(){
         body: JSON.stringify(user),
         
         };    
-        console.log(user);
-        fetch('http://localhost:4000/createUser', option)
+        //console.log(user);
+        fetch('http://localhost:4000/createUser', option).then(response => {
+            console.log(response);
+        });
 
         //hvis ikke den eksistere
     } else {

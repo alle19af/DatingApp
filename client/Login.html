@@ -5,32 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dating app</title>
     <script src="/js/login.js" defer></script>
+    <link href="./stylesheet/login.css" rel="stylesheet">
 </head>
 <body>
         <h1>Welcome to the worlds greatest Dating app</h1>
-
+        <div class="imgcontainer">
+            <img class="avatar" src="images/avatar.jpg">
+        </div>
+        
+        
         <form class="form">
             <div class="login">
                 <label for="username">Username:  </label><br>
-                <input id="username" type="text" required><br><br>
+                <input id="username" type="text"  name="username" required><br><br>
               
                 <label for="password">Password:</label><br>
-                <input id="password" type="password" required><br><br>
+                <input id="password" type="password" name="password" required><br><br>
                 
                 <input id="submitlogin" type="submit" value="Login">
             </div><br>
             
     <!-----------After creating a user they will automatically be logged in-->
             <div class="logout">
-                <label for="logout">Log ud: </label>
+                <label for="logout">Log ud: </label></br>
+                <br>
                 <input id="submitlogout" type="reset" value="logout"> 
             </div>
         </form>
-
+   
     <!-----------------Return to main page-------------->
-        <label for="frontpage">Go back to frontpage</label>
+       <br>
         <a href="/">
-            <input id="submit" type="button" value="Go back">
+            <input id="return" type="button" value="Go back">
         </a>
      <!-----------------After login greeting-------------->
      <main>

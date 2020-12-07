@@ -6,7 +6,7 @@ const fs = require('fs');
 const storage = JSON.parse(fs.readFileSync('user.json'))
 
 
-
+// 02. Paths
 const frontpage = function(req, res){  // Hver gang denne path med http verb bliver kaldt, så vil vi starte en fubnktion med 2 parametrer, req & res
     fs.readFile('./client/frontPage.html', 'utf8', function(err, text){
          res.send(text);
@@ -25,36 +25,39 @@ const login = function(req, res){  // Hver gang denne path med http verb bliver 
      });// hver gang der kommer en get request, sender vi frontpage ud til browseren, som er en en html fil.
 }
 
+// 03. Actions witd DB/ storage(skal rykkes til model)
 const getInput = function(req, res){
     console.log('test test i controller')
-    storage.push(req.body) // skubber body ind i vores storageObject
 
     ans ="";
     let prop = req.body.mail;
     let counter = 0;
-
+    // https://www.geeksforgeeks.org/javascript-check-if-a-key-exists-inside-a-json-object/
+    // Looping through our storage object, checking if User input already exist.
     for(var i=0; i <storage.length; i++){
-        console.log('test ' + storage[i].mail);
+        console.log('test if: ' + storage[i].mail + ' is = '+ prop);
         if(storage[i].mail == prop){
-            ans = "var 'obj' has " + prop + " property"; 
+            ans = "Storage has " + prop + " as property"; 
             counter++;
             
         } else {
             // console.log(storage)
-            ans = "var 'obj' doesnt have " + prop + " as property"; 
+            ans = "Storage doesnt have " + prop + " as property"; 
         }
-        console.log(ans)
-        console.log(storage)
-     }
-     console.log("counter = " + counter)
-        if(counter == 0){
-                //laver vores storage object til  string og indsætter i JSON   
-            fs.writeFile('user.json', JSON.stringify(storage, null, 2), (err) => {
-                if (err) throw err;
-                console.log('Data written to file');
-            });
-        }
-
+    }
+    console.log(ans)
+    console.log("counter = " + counter)
+    storage.push(req.body) // skubber body ind i vores storageObject
+    if(counter  < 1){
+        console.log("Test om den kære uden for loop")
+            //laver vores storage object til  string og indsætter i JSON   
+        fs.writeFile('user.json', JSON.stringify(storage, null, 2), (err) => {
+            if (err) throw err;
+            console.log('Data written to file');
+        });
+    } else {
+        console.log( "the user is taken")
+    }
     // ans ="";
     // let prop = req.body.mail;
     // if(storage.mail === prop){
@@ -71,39 +74,13 @@ const getInput = function(req, res){
     //         console.log(ans)
  };
 
+
+
 module.exports = {frontpage, createUser, login, getInput};
 
 
-//     console.log("this is " + prop)
 
-//     if( storage.hasOwnProperty(prop)){
-//         ans = "var 'obj' has " + prop + " property";
-//     } else {
-//         //laver vores storage object til  string og indsætter i JSON   
-//         fs.writeFile('user.json', JSON.stringify(storage, null, 2), (err) => {
-//             if (err) throw err;
-//             console.log('Data written to file');
-//         });
-//         ans = "var 'obj' doesnt have " + prop + " as property"; 
-//     }
-// console.log(ans)
-
-  // ans ="";
-    // var prop = req.body.mail;
-    // console.log(req.body.mail)
-    // console.log( storage)
-    // if(storage == storage.mail){
-    //     ans = "var 'obj' has " + prop + " property";
-    //     } else {
-    //         ans = "var 'obj' doesnt have " + prop + " as property"; 
-    //         //laver vores storage object til  string og indsætter i JSON   
-    //         fs.writeFile('user.json', JSON.stringify(storage, null, 2), (err) => {
-    //             if (err) throw err;
-    //             console.log('Data written to file');
-    //         });
-    //     }
-    //     console.log(ans);
-
+// ----------------TYV stjålet fra REST API VIDEOEN-----------------//
 // // 0.1 Go to page create account
 
 // // 1. Get method , takes us to the user page

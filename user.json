@@ -14,5 +14,26 @@
     "age": "40",
     "description": "Jeg er sjov",
     "password": "6666"
+  },
+  {
+    "mail": "susan@hotmail.com",
+    "firstName": "susan",
+    "lastname": "larsen",
+    "description": "hej ehj",
+    "password": "mnana"
+  },
+  {
+    "mail": "bailamoscph@gmail.com",
+    "firstName": "Alexandra",
+    "lastname": "gonzalez",
+    "description": "awdawdaw",
+    "password": "wadawd"
+  },
+  {
+    "mail": "alexandra2211@msn.com",
+    "firstName": "Alexandra",
+    "lastname": "Gonzalez",
+    "description": "adwawd",
+    "password": "adawdwa"
   }
 ]
