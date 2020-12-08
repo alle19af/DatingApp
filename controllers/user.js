@@ -19,15 +19,21 @@ const createUser = function(req, res){  // Hver gang denne path med http verb bl
      });// hver gang der kommer en get request, sender vi frontpage ud til browseren, som er en en html fil.
 };   
 
+const account = function(req,res){
+    fs.readFile('./client/profile.html', 'utf8', function(err, text){
+        res.send(text);
+    });
+}
 const login = function(req, res){  // Hver gang denne path med http verb bliver kaldt, så vil vi starte en fubnktion med 2 parametrer, req & res
     fs.readFile('./client/Login.html', 'utf8', function(err, text){
          res.send(text);
      });// hver gang der kommer en get request, sender vi frontpage ud til browseren, som er en en html fil.
 }
 
+
 // 03. Actions witd DB/ storage(skal rykkes til model)
-const getInput = function(req, res){
-    ans ="";
+const saveInput = function(req, res){
+    
     let prop = req.body.mail;
     let counter = 0;
     // https://www.geeksforgeeks.org/javascript-check-if-a-key-exists-inside-a-json-object/
@@ -47,16 +53,16 @@ const getInput = function(req, res){
     console.log("counter = " + counter)
     storage.push(req.body) // skubber body ind i vores storageObject
     if(counter  < 1){
-        console.log("Test om den kære uden for loop")
             //laver vores storage object til  string og indsætter i JSON   
         fs.writeFile('user.json', JSON.stringify(storage, null, 2), (err) => {
             if (err) throw err;
             console.log(prop + ' has been written to storage');
+                // res.sendFile('/Users/alexandral.gonzalez/Desktop/Eksamen/DatingApp/client/profile.html');
         });
+        
     } else {
         console.log( "the user is taken")
     }
-
  };
 
  const deleteUser = function(req, res){
@@ -89,11 +95,13 @@ const getInput = function(req, res){
 
 
 
+
 const findUser = function(req, res){
-    const email = req.params.email;
-	const userInDB = storage.find((user) => user.email == email);
+    const mail = req.params.mail;
+	const userInDB = storage.find((user) => user.mail == mail);
     res.send(userInDB);
     console.log(userInDB)
+    console.log("test");
 
 }
     // for(var i=0; i <storage.length; i++){
@@ -131,7 +139,7 @@ const findUser = function(req, res){
         // }
 
 
-module.exports = {frontpage, createUser, login, getInput, deleteUser, findUser};
+module.exports = {frontpage, createUser, login, saveInput, deleteUser, findUser, account};
 
 
 

@@ -27,16 +27,20 @@ server.use(express.static('client')); //https://expressjs.com/en/starter/static-
 server.get('/', controller.frontpage);
 
 server.get('/createUser', controller.createUser);
-
+server.get('/profile', controller.account);
 server.get('/Login', controller.login);
 
-server.get('/Login', controller.findUser);
+server.get('/Login/:mail', cors(), controller.findUser);
+//server.post('/Login', controller.findUser);
+
+
 
 
 // 05. Changes to user
-server.post('/createUser/:mail', cors(), controller.getInput)// post fordi vi ønsker at sende data til server
+server.post('/createUser/:mail', cors(), controller.saveInput);// post fordi vi ønsker at sende data til server
 
-server.delete('/createUser/:mail', cors(), controller.deleteUser);
+server.delete('/profile/:mail', cors(), controller.deleteUser);
+
 
 
 

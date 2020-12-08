@@ -1,53 +1,29 @@
-// // ----------- localstorage for createUser page-------------
-const form = document.querySelector('form');
-// const logInClass = document.querySelector('.login');
-// const logOutClass = document.querySelector('.logout');
-const UserInput = document.querySelector('#username');
-const passWordInput = document.querySelector('#password');
-const login = document.querySelector('#submitlogin');
-const logout = document.querySelector('#submitlogout');
-// const h1 = document.querySelector('h1');
-// const personalGreeting = document.querySelector('.personal-greeting');
-// const personalInfo = document.querySelector('.personal-information');
+class Profile {
+    constructor(mail, firstname, lastname, age, description, password){
+        this.mail = mail;
+        this.firstName = firstname;
+        this.lastname = lastname;
+        this.age = age;
+        this.description = description;
+        this.password = password;
+    }
+};
 
-//sikre at submit knap kan gøre som vi vil og ikke som default adfærd
-form.addEventListener('submit', function(e){
-    e.preventDefault();
+const loginBtn = document.querySelector('#submitlogin');
+loginBtn.addEventListener('click', function(){
+    logIn();
 });
 
-// Sætter "item, til at være værdien af input fra useren og bruger dem senere"
-login.addEventListener('click', function(){
-    localStorage.setItem('brugernavn', UserInput.value);
+function logIn() {
+    var mail = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
 
-    localStorage.setItem('kodeord', passWordInput.value);
-   accessProfile(); //køre denne funktion hver gang knappen trykkes på)
-});
-
-// -------------- Hva der skal slettes ved logout.-----------
-logout.addEventListener('click', function(){
-   
-    localStorage.removeItem('brugernavn');
-    localStorage.removeItem('fornavn');
-    localStorage.removeItem('efternavn');
-    localStorage.removeItem('email');
-    localStorage.removeItem('alder');
-    localStorage.removeItem('beskrivelse');
-    localStorage.removeItem('kodeord');
-
-    accessProfile() //køre denne funktion hver gang knappen trykkes på
-});
-
-
-function accessProfile() {
-    var email = document.getElementById("username").value;
-    var password = document.getElementById("submitlogin").value;
-
-    fetch(`http://localhost:4000/login`)
+    fetch(`http://localhost:4000/login/${username}`)
     .then((response) => response.json())
-    .then((input) => {
-        if (input.email == email && input.password == password){
-            rememberMe(email, password);
-           
+    .then((data) => {
+        if (data.mail == mail && data.password == password){
+            saveInput(mail, password);
+            window.location.href = "/profile";
             alert("Log in succesful! We just can't seem to forget you, so this is just a quick reminder: remember to log out after use if you're on a public computer.")
         } else {
             alert("Looks like the e-mail or password is incorret. Please try again or sign up to create an account.")
@@ -55,10 +31,75 @@ function accessProfile() {
     });
 };
 
-function rememberMe(email, password){
-    localStorage.setItem('email', email);
+function saveInput(mail, password){
+    localStorage.setItem('email', mail);
     localStorage.setItem('password', password);
 };
+
+
+
+
+// // // ----------- localstorage for createUser page-------------
+// const form = document.querySelector('form');
+// // const logInClass = document.querySelector('.login');
+// // const logOutClass = document.querySelector('.logout');
+// const UserInput = document.querySelector('#username');
+// const passWordInput = document.querySelector('#password');
+// const login = document.querySelector('#submitlogin');
+// const logout = document.querySelector('#submitlogout');
+// // const h1 = document.querySelector('h1');
+// // const personalGreeting = document.querySelector('.personal-greeting');
+// // const personalInfo = document.querySelector('.personal-information');
+
+// //sikre at submit knap kan gøre som vi vil og ikke som default adfærd
+// form.addEventListener('submit', function(e){
+//     e.preventDefault();
+// });
+
+// // Sætter "item, til at være værdien af input fra useren og bruger dem senere"
+// login.addEventListener('click', function(){
+//     localStorage.setItem('brugernavn', UserInput.value);
+
+//     localStorage.setItem('kodeord', passWordInput.value);
+//    accessProfile(); //køre denne funktion hver gang knappen trykkes på)
+// });
+
+// // -------------- Hva der skal slettes ved logout.-----------
+// logout.addEventListener('click', function(){
+   
+//     localStorage.removeItem('brugernavn');
+//     localStorage.removeItem('fornavn');
+//     localStorage.removeItem('efternavn');
+//     localStorage.removeItem('email');
+//     localStorage.removeItem('alder');
+//     localStorage.removeItem('beskrivelse');
+//     localStorage.removeItem('kodeord');
+
+//     accessProfile() //køre denne funktion hver gang knappen trykkes på
+// });
+
+
+// function accessProfile() {
+//     var email = document.getElementById("username").value;
+//     var password = document.getElementById("submitlogin").value;
+
+//     fetch(`http://localhost:4000/login`)
+//     .then((response) => response.json())
+//     .then((input) => {
+//         if (input.email == email && input.password == password){
+//             rememberMe(email, password);
+           
+//             alert("Log in succesful! We just can't seem to forget you, so this is just a quick reminder: remember to log out after use if you're on a public computer.")
+//         } else {
+//             alert("Looks like the e-mail or password is incorret. Please try again or sign up to create an account.")
+//         };
+//     });
+// };
+
+// function rememberMe(email, password){
+//     localStorage.setItem('email', email);
+//     localStorage.setItem('password', password);
+// };
 
 
 

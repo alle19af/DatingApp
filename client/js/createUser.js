@@ -44,7 +44,7 @@ loginBtn.addEventListener('click', function(){
     localStorage.setItem('alder', ageInput.value);
     localStorage.setItem('beskrivelse', descrInput.value);
     localStorage.setItem('kodeord', passCodeInput.value);
-    displayUser() //køre denne funktion hver gang knappen trykkes på
+    saveUser() //køre denne funktion hver gang knappen trykkes på
 
 //-----------------FOR JSON-----------------------------------
     // let newUser = new User(firstname, lastname, description, password);
@@ -52,30 +52,30 @@ loginBtn.addEventListener('click', function(){
         
 });
 
-deleteBtn.addEventListener('click', function(){
-    localStorage.getItem('brugernavn');
-    localStorage.getItem('fornavn');
-    localStorage.getItem('efternavn');
-    localStorage.getItem('alder');
-    localStorage.getItem('beskrivelse');
-    localStorage.getItem('kodeord');
-    deleteUser();
+// deleteBtn.addEventListener('click', function(){
+//     localStorage.getItem('brugernavn');
+//     localStorage.getItem('fornavn');
+//     localStorage.getItem('efternavn');
+//     localStorage.getItem('alder');
+//     localStorage.getItem('beskrivelse');
+//     localStorage.getItem('kodeord');
+//     deleteUser();
 
-})
+// });
 
-// -------------- Hva der skal slettes ved logout.-----------
-logoutBtn.addEventListener('click', function(){
-    localStorage.removeItem('brugernavn');
-    localStorage.removeItem('fornavn');
-    localStorage.removeItem('efternavn');
-    localStorage.removeItem('alder');
-    localStorage.removeItem('beskrivelse');
-    localStorage.removeItem('kodeord');
-    displayUser() //køre denne funktion hver gang knappen trykkes på
-});
+// // -------------- Hva der skal slettes ved logout.-----------
+// logoutBtn.addEventListener('click', function(){
+//     localStorage.removeItem('brugernavn');
+//     localStorage.removeItem('fornavn');
+//     localStorage.removeItem('efternavn');
+//     localStorage.removeItem('alder');
+//     localStorage.removeItem('beskrivelse');
+//     localStorage.removeItem('kodeord');
+//     displayUser() //køre denne funktion hver gang knappen trykkes på
+// });
 
 //------------------ved tryk på submit user  kør denne funktion--------------
-function displayUser(){
+function saveUser(){
     if(localStorage.getItem('fornavn')){
         let mail = localStorage.getItem('brugernavn');
         let firstname = localStorage.getItem('fornavn');
@@ -83,12 +83,12 @@ function displayUser(){
         let age = localStorage.getItem('alder');
         let description= localStorage.getItem('beskrivelse');
         let password = localStorage.getItem('kodeord');
-        h1.textContent = "Velkommen "+ firstname  + " " +lastname;
-        p.textContent = "du kan nu explore the dating world";
-        personalGreeting.textContent = "Velkommen til vores hjemmeside " + firstname;
-        personalInfo.textContent = " Her er lidt info om dig " + firstname + " : Din alder er " + age + ", din mail er:  " + mail + ".  " +  ". Dit valgte kodeord er: " + password;
-        logoutDiv.style.display = 'block';
-        loginDiv.style.display = 'none';
+        // h1.textContent = "Velkommen "+ firstname  + " " +lastname;
+        // p.textContent = "du kan nu explore the dating world";
+        // personalGreeting.textContent = "Velkommen til vores hjemmeside " + firstname;
+        // personalInfo.textContent = " Her er lidt info om dig " + firstname + " : Din alder er " + age + ", din mail er:  " + mail + ".  " +  ". Dit valgte kodeord er: " + password;
+        // logoutDiv.style.display = 'block';
+        // loginDiv.style.display = 'none';
 
         const user = new Profile(mail, firstname, lastname, age, description, password);
 
@@ -106,6 +106,7 @@ function displayUser(){
         }).catch(function() {
             console.log("error");
         });
+        window.location.href = "/profile";
 
         //hvis ikke den eksistere
     } else {
@@ -118,39 +119,39 @@ function displayUser(){
     }
 }
 
-function deleteUser(){
-    if(localStorage.getItem('brugernavn')){
-    let mail = localStorage.getItem('brugernavn');
-    let firstname = localStorage.getItem('fornavn');
-    let lastname = localStorage.getItem('efternavn');
-    let age = localStorage.getItem('alder');
-    let description= localStorage.getItem('beskrivelse');
-    let password = localStorage.getItem('kodeord');
+// function deleteUser(){
+//     if(localStorage.getItem('brugernavn')){
+//     let mail = localStorage.getItem('brugernavn');
+//     let firstname = localStorage.getItem('fornavn');
+//     let lastname = localStorage.getItem('efternavn');
+//     let age = localStorage.getItem('alder');
+//     let description= localStorage.getItem('beskrivelse');
+//     let password = localStorage.getItem('kodeord');
 
-    const user = new Profile(mail, firstname, lastname, age, description, password);
-        const option = {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-        }, 
-        body: JSON.stringify(user),
-        };    
-        //console.log(user);
-        fetch(`http://localhost:4000/createUser/${mail}`, option).then(function() {
-            console.log("ok");
-        }).catch(function() {
-            console.log("error");
-        });
+//     const user = new Profile(mail, firstname, lastname, age, description, password);
+//         const option = {
+//             method: 'DELETE',
+//             headers: {
+//                 'Content-Type': 'application/json'
+//         }, 
+//         body: JSON.stringify(user),
+//         };    
+//         //console.log(user);
+//         fetch(`http://localhost:4000/createUser/${mail}`, option).then(function() {
+//             console.log("ok");
+//         }).catch(function() {
+//             console.log("error");
+//         });
         
-        h1.textContent = "Velkommen stranger";
-        p.textContent = "Din bruger er nu slettet";
-        personalGreeting.textContent = "Vi håber du har fundet din soulmate";
-        personalInfo.textContent = "Vi har ingen info om dig, Opret en bruger";
+//         h1.textContent = "Velkommen stranger";
+//         p.textContent = "Din bruger er nu slettet";
+//         personalGreeting.textContent = "Vi håber du har fundet din soulmate";
+//         personalInfo.textContent = "Vi har ingen info om dig, Opret en bruger";
 
-        logoutDiv.style.display = 'none';
-        loginDiv.style.display = 'block';
-    };
-};
+//         logoutDiv.style.display = 'none';
+//         loginDiv.style.display = 'block';
+//     };
+// };
 
 
 //For create user page -with localstorage
