@@ -29,8 +29,9 @@ class Profile {
         this.password = password;
     }
 };
+
 //sikre at submit knap kan gøre som vi vil og ikke som default adfærd
-form.addEventListener('submit', function(e){
+form.addEventListener('click', function(e){
     e.preventDefault();
 });
 
@@ -100,7 +101,7 @@ function displayUser(){
         
         };    
         //console.log(user);
-        fetch(`http://localhost:4000/createUser/`, option).then(function() {
+        fetch(`http://localhost:4000/createUser/${mail}`, option).then(function() {
             console.log("ok");
         }).catch(function() {
             console.log("error");
@@ -135,7 +136,7 @@ function deleteUser(){
         body: JSON.stringify(user),
         };    
         //console.log(user);
-        fetch(`http://localhost:4000/createUser`, option).then(function() {
+        fetch(`http://localhost:4000/createUser/${mail}`, option).then(function() {
             console.log("ok");
         }).catch(function() {
             console.log("error");
@@ -153,27 +154,9 @@ function deleteUser(){
 
 
 //For create user page -with localstorage
-document.body.onload = displayUser;
-document.body.onload = deleteUser;
+// document.body.onload = 
+
+// document.body.onload = 
 
 
 
-// ---------------------FOR JSON--------------
-// function uploadUser(user){
-    
-//     fetch('http://localhost:4000/', {
-//       method: 'POST', // or 'PUT'
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify(user),
-//     })
-//     .then(response => response.json())
-//     .then(data => {
-//       console.log('Success:', data);
-      
-//     })
-//     .catch((error) => {
-//       console.error('Error:', error);
-//     });
-//     }

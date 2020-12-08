@@ -136,4 +136,4 @@ function rememberMe(email, password){
 //     }
 
 //For Login page -with localstorage
-document.body.onload = accessProfile;
+// document.body.onload = accessProfile;

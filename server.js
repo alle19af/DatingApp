@@ -15,7 +15,7 @@ const PORT = 4000; // definere port nr.
 // 03. initialize body parser middleware
 server.use(bodyParser.json()); // state that we use json data in the application
      // To get static files, use the express.static middleware from express module
-express.static('/client'); // THis is a root argument, specifies which root directory to serve static assets
+// express.static('/client'); // THis is a root argument, specifies which root directory to serve static assets
      // makes it possible to go to all static sides in my folder view
 server.use(express.static('client')); //https://expressjs.com/en/starter/static-files.html
 
@@ -34,9 +34,9 @@ server.get('/Login', controller.findUser);
 
 
 // 05. Changes to user
-server.post('/createUser', cors(), controller.getInput)// post fordi vi ønsker at sende data til server
+server.post('/createUser/:mail', cors(), controller.getInput)// post fordi vi ønsker at sende data til server
 
-server.delete('/createUser', cors(), controller.deleteUser);
+server.delete('/createUser/:mail', cors(), controller.deleteUser);
 
 
 
