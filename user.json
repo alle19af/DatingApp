@@ -1,82 +1,50 @@
 [
   {
-    "mail": "alex@msn.com",
-    "firstname": "alex",
-    "lastname": "gonzalez",
-    "age": "38",
-    "description": "Jeg er sød",
-    "password": "1234"
+    "mail": "alex",
+    "firstName": "'",
+    "lastname": "",
+    "age": "",
+    "description": "",
+    "password": ""
   },
   {
-    "mail": "johanoulis@gmail.com",
-    "firstname": "johan",
-    "lastname": "athanas",
-    "age": "40",
-    "description": "Jeg er sjov",
-    "password": "6666"
+    "mail": "awdwad",
+    "firstName": "awdad",
+    "lastname": "",
+    "age": "",
+    "description": "",
+    "password": ""
   },
   {
-    "mail": "alea2211@msn.com",
-    "firstName": "Alexandra",
-    "lastname": "Gonzalez",
-    "age": "awdawd",
-    "description": "adawd",
-    "password": "iuhk"
+    "mail": "eise",
+    "firstName": "jhbjh",
+    "lastname": "bhjb",
+    "age": "",
+    "description": "",
+    "password": ""
   },
   {
-    "mail": "sofia@msbn.com",
-    "firstName": "hjbjh",
-    "lastname": "jh j",
-    "age": "j j",
-    "description": "khbjhb",
-    "password": "khbhk"
+    "mail": "adadwawdadadaw",
+    "firstName": "awdadadwad",
+    "lastname": "",
+    "age": "",
+    "description": "",
+    "password": ""
   },
   {
-    "mail": "sofia@msbn.com",
-    "firstName": "hjbjh",
-    "lastname": "jh j",
-    "age": "j j",
-    "description": "khbjhb",
-    "password": "khbhk"
+    "mail": "sfsef",
+    "firstName": "sfesef",
+    "lastname": "sefesf",
+    "age": "sfesef",
+    "description": "",
+    "password": ""
   },
   {
-    "mail": "sofia@msbn.com",
-    "firstName": "hjbjh",
-    "lastname": "jh j",
-    "age": "j j",
-    "description": "khbjhb",
-    "password": "khbhk"
-  },
-  {
-    "mail": "sofia@msbn.com",
-    "firstName": "hjbjh",
-    "lastname": "jh j",
-    "age": "j j",
-    "description": "khbjhb",
-    "password": "khbhk"
-  },
-  {
-    "mail": "sofia@msbn.com",
-    "firstName": "hjbjh",
-    "lastname": "jh j",
-    "age": "j j",
-    "description": "khbjhb",
-    "password": "khbhk"
-  },
-  {
-    "mail": "sofia@msbn.com",
-    "firstName": "hjbjh",
-    "lastname": "jh j",
-    "age": "j j",
-    "description": "khbjhb",
-    "password": "khbhk"
-  },
-  {
-    "mail": "maria@sm-dk",
-    "firstName": ",nmdnm",
-    "lastname": "kbjk",
-    "age": "kjbkj",
-    "description": "kjbkjb",
-    "password": "jkbkj"
+    "mail": "sfsrf",
+    "firstName": "sfsef",
+    "lastname": "sefsef",
+    "age": "",
+    "description": "",
+    "password": ""
   }
 ]

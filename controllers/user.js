@@ -8,13 +8,13 @@ const storage = JSON.parse(fs.readFileSync('user.json'))
 
 // 02. Paths
 const frontpage = function(req, res){  // Hver gang denne path med http verb bliver kaldt, så vil vi starte en fubnktion med 2 parametrer, req & res
-    fs.readFile('./client/frontPage.html', 'utf8', function(err, text){
+     fs.readFile('./client/frontPage.html', 'utf8', function(err, text){
          res.send(text);
-     });// hver gang der kommer en get request, sender vi frontpage ud til browseren, som er en en html fil.
+    });// hver gang der kommer en get request, sender vi frontpage ud til browseren, som er en en html fil.
 };
 
 const createUser = function(req, res){  // Hver gang denne path med http verb bliver kaldt, så vil vi starte en fubnktion med 2 parametrer, req & res
-    fs.readFile('/Users/alexandral.gonzalez/Desktop/Eksamen/DatingApp/client/createUser.html', 'utf8', function(err, text){
+    fs.readFile('./client/createUser.html', 'utf8', function(err, text){
          res.send(text);
      });// hver gang der kommer en get request, sender vi frontpage ud til browseren, som er en en html fil.
 };   
@@ -60,11 +60,78 @@ const getInput = function(req, res){
  };
 
  const deleteUser = function(req, res){
+    
+    let prop = req.body.mail;
+    console.log(prop)
+    
+    // https://www.geeksforgeeks.org/javascript-check-if-a-key-exists-inside-a-json-object/
+    // Looping through our storage object, checking if User input already exist.
+   
+    console.log('vi tester delete')
+    
+    for( var i = 0; i < storage.length; i++){ 
+         if (storage[i].mail == prop) { 
+             console.log(storage[i].mail)
+        
+       
+          console.log("user that we delete is: " + storage[i].mail)
+          storage.splice(i,1);
 
- }
+           //laver vores storage object til  string og indsætter i JSON   
+        fs.writeFileSync('user.json', JSON.stringify(storage, null, 2), (err) => {
+            if (err) throw err;
+            
+        })
+        } 
+    }
+
+};
 
 
-module.exports = {frontpage, createUser, login, getInput, deleteUser};
+
+const findUser = function(req, res){
+    const email = req.params.email;
+	const userInDB = storage.find((user) => user.email == email);
+    res.send(userInDB);
+    console.log(userInDB)
+
+}
+    // for(var i=0; i <storage.length; i++){
+        
+    //     if(storage[i].mail == prop){
+    //         ans = "Storage has " + prop + " as property"; 
+    //         counter++;
+            
+    //     } else {
+    //         // console.log(storage)
+    //         ans = "Storage doesnt have " + prop + " as property"; 
+    //     }
+    // }
+    // console.log(ans)
+    // console.log("counter = " + counter)
+    // storage.filter(req.body) // skubber body ind i vores storageObject
+    // if(counter  > 0){
+    //     console.log("Så sletter vi user "+ prop)
+    //         //laver vores storage object til  string og indsætter i JSON   
+    //     fs.writeFile('user.json', JSON.stringify(storage, null, 2), (err) => {
+    //         if (err) throw err;
+    //         console.log(prop + ' has been written to storage');
+    //     });
+    // } else {
+    //     console.log( "the user doenst exist")
+    // }
+
+        // var fs = require('fs');
+        // var removeUser = "test2";
+        // var data = fs.readFileSync('results.json');
+        // var json = JSON.parse(data);
+        // var users = json.users;
+        // json.users = users.filter((user) => { return user.username !== removeUser });
+        // fs.writeFileSync('results.json', JSON.stringify(json, null, 2));
+        // }
+
+
+module.exports = {frontpage, createUser, login, getInput, deleteUser, findUser};
 
 
 
