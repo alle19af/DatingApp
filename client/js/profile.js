@@ -1,4 +1,5 @@
 
+
 let mail = localStorage.getItem('brugernavn');
 let firstname = localStorage.getItem('fornavn');
 let lastname = localStorage.getItem('efternavn');
@@ -6,6 +7,8 @@ let age = localStorage.getItem('alder');
 let description= localStorage.getItem('beskrivelse');
 let password = localStorage.getItem('kodeord');
 const deleteBtn = document.querySelector('#delete');
+const acceptEditBtn = document.querySelector('#submitedit');
+const startEditBtn = document.querySelector('#edit');
 
 var table = document.getElementById("table");
 
@@ -44,7 +47,6 @@ deleteBtn.addEventListener('click', function(){
     localStorage.getItem('beskrivelse');
     localStorage.getItem('kodeord');
     deleteUser();
-
 });
 
 function deleteUser(){
@@ -74,3 +76,47 @@ function deleteUser(){
 
     };
 }};
+
+startEditBtn.addEventListener('click', function(){
+    for(i in user){
+        table.innerHTML += 
+        "<tr><td><input>" + 
+        "</td><td><input>"  +
+        "</td><td><input>" + 
+        "</td><td><input>" + 
+        "</td><td><input>" + 
+        "</td><td><input>" + 
+        "</td></tr>"
+    }
+
+    editUser();
+})
+
+function editUser(){
+    if(localStorage.getItem('brugernavn')){
+        acceptEditBtn.style.display = 'none';
+        startEditBtn.style.display = 'block';
+        
+        //const user = new Profile(mail, firstname, lastname, age, description, password);
+
+        const option = {
+            method: 'Patch',
+            headers: {
+                'Content-Type': 'application/json'
+        }, 
+        body: JSON.stringify(user),
+        
+        };    
+        //console.log(user);
+        fetch(`http://localhost:4000/profile/${mail}`, option).then(function() {
+            console.log("ok");
+        }).catch(function() {
+            console.log("error");
+        });
+        alert('your change has been saved') 
+} else {
+    acceptEditBtn.style.display = 'block';
+    startEditBtn.style.display = 'none';
+}
+
+}

@@ -81,7 +81,7 @@ function saveUser(){
         let firstname = localStorage.getItem('fornavn');
         let lastname = localStorage.getItem('efternavn');
         let age = localStorage.getItem('alder');
-        let description= localStorage.getItem('beskrivelse');
+        let description = localStorage.getItem('beskrivelse');
         let password = localStorage.getItem('kodeord');
         // h1.textContent = "Velkommen "+ firstname  + " " +lastname;
         // p.textContent = "du kan nu explore the dating world";
@@ -110,10 +110,7 @@ function saveUser(){
 
         //hvis ikke den eksistere
     } else {
-        h1.textContent = "Velkommen stranger";
-        p.textContent = "Du er ikke logget ind endnu";
-        personalGreeting.textContent = "";
-        personalInfo.textContent = "Vi har ingen info om dig, Opret en bruger eller login"
+        
         logoutDiv.style.display = 'none';
         loginDiv.style.display = 'block';
     }

@@ -8,59 +8,27 @@
     "password": ""
   },
   {
-    "mail": "henrik",
-    "firstName": "hjgjh",
-    "lastname": "gjh",
-    "age": "hjgjhb",
-    "description": "hgvjgv",
-    "password": "jhjhb"
+    "mail": "edsf",
+    "firstName": "sff",
+    "lastname": "sff",
+    "age": "sefse",
+    "description": "sefs",
+    "password": "1"
   },
   {
     "mail": "alex",
-    "firstName": "kj",
-    "lastname": "jhb",
-    "age": "jh",
-    "description": "jhb",
-    "password": "jhb"
+    "firstName": "1",
+    "lastname": "2",
+    "age": "2",
+    "description": "2",
+    "password": "2"
   },
   {
     "mail": "alexandra2211@msn.com",
     "firstName": "Alexandra",
     "lastname": "Gonzalez",
-    "age": "awdawd",
-    "description": "awdawdawd",
-    "password": "awdw"
-  },
-  {
-    "mail": "egon ",
-    "firstName": "UVJGV",
-    "lastname": "JHV",
-    "age": "JHV",
-    "description": "JHV",
-    "password": "JHV"
-  },
-  {
-    "mail": "sille",
-    "firstName": "hbj",
-    "lastname": "jhb",
-    "age": "jhb",
-    "description": "jhbjh",
-    "password": "jhb"
-  },
-  {
-    "mail": "bailamoscph@gmail.com",
-    "firstName": "Alexandra",
-    "lastname": "gonzalez",
-    "age": "adwawda",
-    "description": "awdawd",
-    "password": "awdawd"
-  },
-  {
-    "mail": "bailamoscph@gmail.com\t",
-    "firstName": "adweda",
-    "lastname": "awdawd",
-    "age": "adwa",
-    "description": "dawdaw",
-    "password": "adwa"
+    "age": "$",
+    "description": "$",
+    "password": "$"
   }
 ]

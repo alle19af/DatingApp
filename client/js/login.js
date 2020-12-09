@@ -1,40 +1,44 @@
-class Profile {
-    constructor(mail, firstname, lastname, age, description, password){
-        this.mail = mail;
-        this.firstName = firstname;
-        this.lastname = lastname;
-        this.age = age;
-        this.description = description;
-        this.password = password;
-    }
-};
+// ----------- localstorage for createUser page-------------
 
+//Lauras kode
+const usernameInput = document.querySelector('#username');
+
+const passCodeInput = document.querySelector('#password');
 const loginBtn = document.querySelector('#submitlogin');
+
+
+
+
+
 loginBtn.addEventListener('click', function(){
+         localStorage.setItem('username', usernameInput.value);
+         localStorage.setItem('password', passCodeInput.value);
     logIn();
 });
 
-function logIn() {
-    var mail = document.getElementById("username").value;
-    var password = document.getElementById("password").value;
-
-    fetch(`http://localhost:4000/login/${username}`)
-    .then((response) => response.json())
-    .then((data) => {
-        if (data.mail == mail && data.password == password){
-            saveInput(mail, password);
-            window.location.href = "/profile";
-            alert("Log in succesful! We just can't seem to forget you, so this is just a quick reminder: remember to log out after use if you're on a public computer.")
-        } else {
-            alert("Looks like the e-mail or password is incorret. Please try again or sign up to create an account.")
-        };
-    });
-};
-
-function saveInput(mail, password){
-    localStorage.setItem('email', mail);
-    localStorage.setItem('password', password);
-};
+    function logIn() {
+        var mail = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+    
+        fetch(`http://localhost:4000/Login/${mail}`)
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data + "test");
+            if (data.mail == mail && data.password == password){
+                
+                rememberMe(mail, password);
+                window.location.href = "/profile";
+                alert("Log in succesful! We just can't seem to forget you, so this is just a quick reminder: remember to log out after use if you're on a public computer.")
+            } else {
+                alert("Looks like the e-mail or password is incorret. Please try again or sign up to create an account.")
+            };
+        });
+    };
+    
+    function rememberMe(email, password){
+        localStorage.setItem('email', email);
+        localStorage.setItem('password', password);
+    };
 
 
 

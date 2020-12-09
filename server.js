@@ -41,6 +41,8 @@ server.post('/createUser/:mail', cors(), controller.saveInput);// post fordi vi 
 
 server.delete('/profile/:mail', cors(), controller.deleteUser);
 
+server.patch('/profile/:mail', cors(), controller.editUser);
+
 
 
 

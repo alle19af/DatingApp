@@ -10,13 +10,16 @@
 const controller = require('../controllers/user')
 
 class User {
-    constructor(firstname, lastname, mail, age, description, password){
-        this.firstname;
-        this.lastname;
-        this.mail;
-        this.age;
-        this.description;
-        this.password;
+    constructor(mail, firstname, lastname, age, description, password){
+        this.mail = mail;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.age = age;
+        this.description = description;
+        this.password = password;
     }
 };
+
+
+module.exports = {User};
 
