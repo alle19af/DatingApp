@@ -3,9 +3,9 @@
 
 // 01. Connections
 const fs = require('fs');
-const { User } = require('../model/data');
+const {User} = require('../model/data');
 const storage = JSON.parse(fs.readFileSync('user.json'))
-const model = require('../model/data');
+
 
 
 // 02. Paths
@@ -32,6 +32,11 @@ const login = function(req, res){  // Hver gang denne path med http verb bliver 
      });// hver gang der kommer en get request, sender vi frontpage ud til browseren, som er en en html fil.
 };
 
+const editprofile = function(req,res){
+    fs.readFile('./client/edituser.html', 'utf8', function(err, text){
+        res.send(text);
+    });// hver gang der kommer en get request, sender vi frontpage ud til browseren, som er en en html fil.
+}
 
 // 03. Actions witd DB/ storage(skal rykkes til model)
 const saveInput = function(req, res){
@@ -96,26 +101,69 @@ const saveInput = function(req, res){
 };
 
 const findUser = function(req, res){
-    const mail = req.params.mail;
-	const specificUser = storage.find((user) => user.mail == mail);
-    res.send(specificUser);
-    console.log(specificUser)
-};
+    
+    //console.log(storage)
+    const prop = req.params.mail;
+    let counter = 0;
+    for( var i = 0; i < storage.length; i++){ 
+       counter++;
+        
+        if (storage[i].mail == prop) { 
+            console.log(i);
+            console.log(storage[i]);
+            
+            res.send(storage[i]);
+        }
+        
+        
+    }   
+     console.log(counter)    
+    // // fs.readFile('user.json', JSON.stringify(storage[i],null, 2), (err) => {
+    // //     if (err) throw err;
+    // //     console.log(prop + ' has been read');
+    // // });
+    // res.send(storage[counter]);
+}
+
+    // console.log( mail + " this is mail")
+	// const specificUser = storage.find((user) => user.mail == mail);
+ 
+    
+    // console.log(specificUser + " is specific user")
+    // console.log(storage + " in find user")
+
 
 //taget fra laura
 const editUser = function(req,res){
-        const mail = req.params.mail;
-        const specificUser = storage.find((user) => user.mail == mail);
-        res.send(specificUser);
-        console.log(specificUser)
+    const mail = req.params.mail;
+    const firstname = req.body.firstname;
+    const lastname = req.body.lastname;
+    const age = req.body.age;
+    const description = req.params.description;
+    const password= req.body.password;
+   
 
+    const specificUser = storage.find((user) => user.mail == mail);
 
-      //laver vores storage object til  string og indsætter i JSON   
-      fs.writeFile('user.json', JSON.stringify(storage, null, 2), (err) => {
-        if (err) throw err;
-        console.log(prop + ' we have edited the profile');
-            // res.sendFile('/Users/alexandral.gonzalez/Desktop/Eksamen/DatingApp/client/profile.html');
-    });
+    if(firstname) {
+        specificUser.firstname = firstname;
+    };
+    if(lastname) {
+        specificUser.lastname = lastname;
+    };
+    if(age) {
+        specificUser.age = age;
+    };
+    if(description) {
+        specificUser.description = description;
+    };
+    if(password){
+        specificUser.password = password;
+    }
+    let userStorage = JSON.stringify(storage, null, 2);
+    fs.writeFileSync('./storage/userStorage.json', userStorage, 'utf8')
+
+    res.send("Good news! Your profile has successfully been updated.")
 }
 
 //     let prop = req.body.mail;
@@ -185,7 +233,7 @@ const editUser = function(req,res){
         // }
 
 
-module.exports = {frontpage, createUser, login, saveInput, deleteUser, findUser, account, editUser};
+module.exports = {frontpage, createUser, login, editprofile, saveInput, deleteUser, findUser, account, editUser};
 
 
 

@@ -12,12 +12,7 @@ const loginBtn = document.querySelector('#submitUser');
 const deleteBtn = document.querySelector('#delete');
 const logoutBtn = document.querySelector('#submitlogout');
 const h1 = document.querySelector('h1');
-const p = document.querySelector('#todo');
-// const personalGreeting = document.querySelector('.personal-greeting');
-// const personalInfo = document.querySelector('.personal-information');
 
-// logoutDiv.style.display = 'none';
-// loginDiv.style.display = 'none';
 
 class Profile {
     constructor(mail, firstname, lastname, age, description, password){
@@ -117,42 +112,3 @@ function saveUser(){
     }
 }
 
-// function deleteUser(){
-//     if(localStorage.getItem('brugernavn')){
-//     let mail = localStorage.getItem('brugernavn');
-//     let firstname = localStorage.getItem('fornavn');
-//     let lastname = localStorage.getItem('efternavn');
-//     let age = localStorage.getItem('alder');
-//     let description= localStorage.getItem('beskrivelse');
-//     let password = localStorage.getItem('kodeord');
-
-//     const user = new Profile(mail, firstname, lastname, age, description, password);
-//         const option = {
-//             method: 'DELETE',
-//             headers: {
-//                 'Content-Type': 'application/json'
-//         }, 
-//         body: JSON.stringify(user),
-//         };    
-//         //console.log(user);
-//         fetch(`http://localhost:4000/createUser/${mail}`, option).then(function() {
-//             console.log("ok");
-//         }).catch(function() {
-//             console.log("error");
-//         });
-        
-//         h1.textContent = "Velkommen stranger";
-//         p.textContent = "Din bruger er nu slettet";
-//         personalGreeting.textContent = "Vi håber du har fundet din soulmate";
-//         personalInfo.textContent = "Vi har ingen info om dig, Opret en bruger";
-
-//         logoutDiv.style.display = 'none';
-//         loginDiv.style.display = 'block';
-//     };
-// };
-
-
-//For create user page -with localstorage
-// document.body.onload = 
-
-// document.body.onload = 

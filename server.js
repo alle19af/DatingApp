@@ -26,22 +26,25 @@ server.use(express.static('client')); //https://expressjs.com/en/starter/static-
      // the endpoint generally is what is supposed to be called by a request, what you provide as an interface to your API consumers
 server.get('/', controller.frontpage);
 
-server.get('/createUser', controller.createUser);
-server.get('/profile', controller.account);
-server.get('/Login', controller.login);
+server.get('/createUser', controller.createUser); //hente siden createuser
+server.get('/profile', controller.account); //henter profil siden
+server.get('/Login', controller.login); //henter login siden
+server.get('/profile/edit', controller.editprofile); // henter ændre bruger siden
 
-server.get('/Login/:mail', cors(), controller.findUser);
 //server.post('/Login', controller.findUser);
 
 
 
 
 // 05. Changes to user
-server.post('/createUser/:mail', cors(), controller.saveInput);// post fordi vi ønsker at sende data til server
+server.get('/Login/:mail', cors(), controller.findUser); // get fordu vi ønsker at hente bruger oplysninger fra "db"
+// server.post('/Login/:mail', cors(), controller.findUser); // post fordi vi ønsker at sende disse oplysninger til profil siden.
 
-server.delete('/profile/:mail', cors(), controller.deleteUser);
+server.post('/createUser/:mail', cors(), controller.saveInput);// post fordi vi ønsker at sende bruger oplysninger til "db"
 
-server.patch('/profile/:mail', cors(), controller.editUser);
+server.delete('/profile/:mail', cors(), controller.deleteUser); // Sletter bruger oplsyninger fra "db"
+
+server.patch('/profile/edit/:mail', cors(), controller.editUser); //Opdatere bruger oplysninger fra "db"
 
 
 

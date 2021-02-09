@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dating App</title>
+    
+    <link href="./stylesheet/createuser.css" rel="stylesheet">
+    <script src="./js/edituser.js" defer></script>
+</head>
+<body>
+    <h1>Welcome to the worlds greatest Dating app</h1>
+    <p id="todo">Sign in here</p>
+    <!--------Getting localstorage from example of localstorage week 42-->
+    <form class="form">
+        <div class="createUser">
+            <label for="username">Email/ username:  </label><br>
+            <input id="username" type="text" required><br><br>
+            <label for="firstname">Firstname:  </label><br>
+            <input id="firstname" type="text" required><br><br>
+            <label for="lastname">Lastname :</label><br>
+            <input id="lastname" type="text" required><br><br>
+            <label for="age"> Age: </label><br>
+            <input id="age" type="text" required><br><br>
+            <label for="description">About you(Can be filled out later):</label><br>
+            <input id="description" type="text"><br><br>
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" required><br><br>
+            
+            <a href="/profile">
+            <input id="submitUser" type="submit" value="Create user">
+            </a>
+        </div><br>
+    </form>
+
+    <!---------------REturn to  main page-------------------->
+    <br>
+        <a href="/">
+            <input id="return" type="button" value="Go back">
+        </a>
+  
+    <footer>
+        Denne hjemmeside er lavet af alex
+    </footer>
+</body>
+</html>

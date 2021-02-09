@@ -1,5 +1,4 @@
 
-
 let mail = localStorage.getItem('brugernavn');
 let firstname = localStorage.getItem('fornavn');
 let lastname = localStorage.getItem('efternavn');
@@ -7,15 +6,18 @@ let age = localStorage.getItem('alder');
 let description= localStorage.getItem('beskrivelse');
 let password = localStorage.getItem('kodeord');
 const deleteBtn = document.querySelector('#delete');
-const acceptEditBtn = document.querySelector('#submitedit');
+const acceptEditBtn = document.querySelector('#submitEdit');
 const startEditBtn = document.querySelector('#edit');
 
 var table = document.getElementById("table");
+acceptEditBtn.style.display = 'none';
+
+//Her henter vi fra localstorage login.js har ikke andet en usernam og pasword
 
 class Profile {
     constructor(mail, firstname, lastname, age, description, password){
         this.mail = mail;
-        this.firstName = firstname;
+        this.firstname = firstname;
         this.lastname = lastname;
         this.age = age;
         this.description = description;
@@ -23,29 +25,33 @@ class Profile {
     }
 };
 
+
 const profile = new Profile(mail, firstname, lastname, age, description, password);
 
-let user = [profile];
-
-for(i in user){
-table.innerHTML += "<tr><td>" + 
-user[i].mail + 
-    "</td><td>" + user[i].firstname +
-    "</td><td>" + user[i].lastname + 
-    "</td><td>" + user[i].age +
-    "</td><td>" + user[i].description +
-    "</td><td>" + user[i].password +
-    "</td></tr>"
+let newUser = [profile];
 
 
+for(i in newUser){
+table.innerHTML += 
+    "<tr><td>" + newUser[i].mail + 
+    "</td><td>" + newUser[i].firstname +
+    "</td><td>" + newUser[i].lastname + 
+    "</td><td>" + newUser[i].age +
+    "</td><td>" + newUser[i].description +
+    "</td><td>" + newUser[i].password +
+    "</td></tr>";
+};
 
+
+// -------------------- Delete virker---------------------
 deleteBtn.addEventListener('click', function(){
-    localStorage.getItem('brugernavn');
-    localStorage.getItem('fornavn');
-    localStorage.getItem('efternavn');
-    localStorage.getItem('alder');
-    localStorage.getItem('beskrivelse');
-    localStorage.getItem('kodeord');
+    alert("Your profile will be deleted");
+    // localStorage.removeItem('brugernavn');
+    //     localStorage.removeItem('fornavn');
+    //     localStorage.removeItem('efternavn');
+    //     localStorage.removeItem('alder');
+    //     localStorage.removeItem('beskrivelse');
+    //     localStorage.removeItem('kodeord');
     deleteUser();
 });
 
@@ -67,7 +73,16 @@ function deleteUser(){
         }).catch(function() {
             console.log("error");
         });
+        
+        localStorage.removeItem('brugernavn');
+        localStorage.removeItem('fornavn');
+        localStorage.removeItem('efternavn');
+        localStorage.removeItem('alder');
+        localStorage.removeItem('beskrivelse');
+        localStorage.removeItem('kodeord');
+        
         window.location.href = "/";
+
         
         // h1.textContent = "Velkommen stranger";
         // p.textContent = "Din bruger er nu slettet";
@@ -75,10 +90,15 @@ function deleteUser(){
         // personalInfo.textContent = "Vi har ingen info om dig, Opret en bruger";
 
     };
-}};
+};
 
+
+//---------------------Mangler----------------------------
 startEditBtn.addEventListener('click', function(){
-    for(i in user){
+    let editUser = new Profile(mail, firstname, lastname, age, description, password);
+        acceptEditBtn.style.display = 'block';
+        startEditBtn.style.display = 'none';
+    for(i in newUser){
         table.innerHTML += 
         "<tr><td><input>" + 
         "</td><td><input>"  +
@@ -88,16 +108,19 @@ startEditBtn.addEventListener('click', function(){
         "</td><td><input>" + 
         "</td></tr>"
     }
-
-    editUser();
 })
 
+// -------------------- Mangler---------------------------
+acceptEditBtn.addEventListener('click', function(){
+    acceptEditBtn.style.display = 'none';
+    startEditBtn.style.display = 'block';
+    editUser();
+    
+})
+
+//--------------------- Mangler -------------------------
 function editUser(){
-    if(localStorage.getItem('brugernavn')){
-        acceptEditBtn.style.display = 'none';
-        startEditBtn.style.display = 'block';
-        
-        //const user = new Profile(mail, firstname, lastname, age, description, password);
+    let user = new Profile(mail, firstname, lastname, age, description, password);
 
         const option = {
             method: 'Patch',
@@ -113,10 +136,45 @@ function editUser(){
         }).catch(function() {
             console.log("error");
         });
-        alert('your change has been saved') 
-} else {
-    acceptEditBtn.style.display = 'block';
-    startEditBtn.style.display = 'none';
+        
+        
+
+        if(localStorage.getItem('brugernavn')){
+            if(mail) {
+                newUser.mail = mail;
+            }
+            if(firstname) {
+                newUser.firstname = firstname;
+            };
+            if(lastname) {
+                newUser.lastname = lastname;
+            };
+            if(age) {
+                newUser.age = age;
+            };
+            if(description) {
+                newUser.description = description;
+            };
+            if(password) {
+                newUser.password = password;
+            };
+
+        
+    // for(i in user){
+    //     table.innerHTML += "<tr><td>" + 
+    //     user[i].mail + 
+    //         "</td><td>" + user[i].firstname +
+    //         "</td><td>" + user[i].lastname + 
+    //         "</td><td>" + user[i].age +
+    //         "</td><td>" + user[i].description +
+    //         "</td><td>" + user[i].password +
+    //         "</td></tr>"
+    //         break;
+    // }
+        // alert('your change has been saved') 
+// } else {
+//     acceptEditBtn.style.display = 'block';
+//     startEditBtn.style.display = 'none';
 }
 
 }

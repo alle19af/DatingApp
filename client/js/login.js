@@ -1,31 +1,54 @@
 // ----------- localstorage for createUser page-------------
 
+
+
 //Lauras kode
 const usernameInput = document.querySelector('#username');
-
 const passCodeInput = document.querySelector('#password');
 const loginBtn = document.querySelector('#submitlogin');
 
-
-
+// 
+class Profile {
+    constructor(mail, firstname, lastname, age, description, password){
+        this.mail = mail;
+        this.firstName = firstname;
+        this.lastname = lastname;
+        this.age = age;
+        this.description = description;
+        this.password = password;
+    }
+};
 
 
 loginBtn.addEventListener('click', function(){
-         localStorage.setItem('username', usernameInput.value);
-         localStorage.setItem('password', passCodeInput.value);
-    logIn();
+        localStorage.setItem('username', usernameInput.value);
+        localStorage.setItem('password', passCodeInput.value);
+        logIn();//overvej om vi skal indhente bruger og kode som parametrer
 });
 
-    function logIn() {
+    function logIn(username, password) {
         var mail = document.getElementById("username").value;
         var password = document.getElementById("password").value;
+        
+        
     
         fetch(`http://localhost:4000/Login/${mail}`)
-        .then((response) => response.json())
-        .then((data) => {
-            console.log(data + "test");
-            if (data.mail == mail && data.password == password){
-                
+        .then((response) => response.json()) // .json() Parse the text to json
+        .then((text) => {
+            console.log(text+ "test");
+            // alert(text.text());
+          
+            if (text.mail == mail && text.password == password){
+                const user = new Profile(mail, text.firstname, text.lastname, text.age, text.description, password);
+                const option = {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }, 
+        body: JSON.parse(user), // Parse the body text as JSON
+        
+        }; 
+
                 rememberMe(mail, password);
                 window.location.href = "/profile";
                 alert("Log in succesful! We just can't seem to forget you, so this is just a quick reminder: remember to log out after use if you're on a public computer.")
@@ -35,8 +58,14 @@ loginBtn.addEventListener('click', function(){
         });
     };
     
+    
+
     function rememberMe(email, password){
         localStorage.setItem('email', email);
+        localStorage.setItem('firstname', firstname);
+        localStorage.setItem('lastname', lastname);
+        localStorage.setItem('age', age);
+        localStorage.setItem('description', description);
         localStorage.setItem('password', password);
     };
 

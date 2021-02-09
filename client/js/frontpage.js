@@ -1,3 +1,9 @@
+// I was considering adding localstorage to frontpage 
+// So when the user was logged in and went to front page 
+// it would greet the user and remind them that they are still logged ind.
+
+
+
 
 
 // // --------------- FOR JSON--------------
