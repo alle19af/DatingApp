@@ -22,7 +22,7 @@ const p = document.querySelector('#todo');
 class Profile {
     constructor(mail, firstname, lastname, age, description, password){
         this.mail = mail;
-        this.firstName = firstname;
+        this.firstname = firstname;
         this.lastname = lastname;
         this.age = age;
         this.description = description;
@@ -45,34 +45,8 @@ loginBtn.addEventListener('click', function(){
     localStorage.setItem('beskrivelse', descrInput.value);
     localStorage.setItem('kodeord', passCodeInput.value);
     saveUser() //køre denne funktion hver gang knappen trykkes på
-
-//-----------------FOR JSON-----------------------------------
-    // let newUser = new User(firstname, lastname, description, password);
-    //         uploadUser(newUser);
-        
 });
 
-// deleteBtn.addEventListener('click', function(){
-//     localStorage.getItem('brugernavn');
-//     localStorage.getItem('fornavn');
-//     localStorage.getItem('efternavn');
-//     localStorage.getItem('alder');
-//     localStorage.getItem('beskrivelse');
-//     localStorage.getItem('kodeord');
-//     deleteUser();
-
-// });
-
-// // -------------- Hva der skal slettes ved logout.-----------
-// logoutBtn.addEventListener('click', function(){
-//     localStorage.removeItem('brugernavn');
-//     localStorage.removeItem('fornavn');
-//     localStorage.removeItem('efternavn');
-//     localStorage.removeItem('alder');
-//     localStorage.removeItem('beskrivelse');
-//     localStorage.removeItem('kodeord');
-//     displayUser() //køre denne funktion hver gang knappen trykkes på
-// });
 
 //------------------ved tryk på submit user  kør denne funktion--------------
 function saveUser(){
@@ -83,76 +57,44 @@ function saveUser(){
         let age = localStorage.getItem('alder');
         let description = localStorage.getItem('beskrivelse');
         let password = localStorage.getItem('kodeord');
-        // h1.textContent = "Velkommen "+ firstname  + " " +lastname;
+
+        const user = new Profile(mail, firstname, lastname, age, description, password);
+
+        // const option = {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        // }, 
+        // body: JSON.stringify(user),
+        
+        // };    
+        //console.log(user);
+        fetch(`http://localhost:4000/createUser/${mail}`).then(function(response) {
+            if(!Response.ok){
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            // if(user.mail == mail){
+            //     alert("Mail is already taken, if you alreadt have an account go to LOGIN")
+            //     logoutDiv.style.display = 'none';
+            //     loginDiv.style.display = 'block';
+            // }else {
+            alert("You will be directed to your profile")
+            window.location.href = "/profile";
+            // } 
+        }).catch(e => {
+            console.log(e + " test");
+
+        });
+        //hvis ikke den eksistere
+    } else {
+       console.log("test");
+    }
+};
+
+
+        //h1.textContent = "Velkommen "+ firstname  + " " +lastname;
         // p.textContent = "du kan nu explore the dating world";
         // personalGreeting.textContent = "Velkommen til vores hjemmeside " + firstname;
         // personalInfo.textContent = " Her er lidt info om dig " + firstname + " : Din alder er " + age + ", din mail er:  " + mail + ".  " +  ". Dit valgte kodeord er: " + password;
         // logoutDiv.style.display = 'block';
         // loginDiv.style.display = 'none';
-
-        const user = new Profile(mail, firstname, lastname, age, description, password);
-
-        const option = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-        }, 
-        body: JSON.stringify(user),
-        
-        };    
-        //console.log(user);
-        fetch(`http://localhost:4000/createUser/${mail}`, option).then(function() {
-            console.log("ok");
-        }).catch(function() {
-            console.log("error");
-        });
-        alert("You will be directed to your profile")
-        window.location.href = "/profile";
-    
-        //hvis ikke den eksistere
-    } else {
-        alert("Mail is already taken, if you alreadt have an account go to LOGIN")
-        logoutDiv.style.display = 'none';
-        loginDiv.style.display = 'block';
-    }
-}
-
-// function deleteUser(){
-//     if(localStorage.getItem('brugernavn')){
-//     let mail = localStorage.getItem('brugernavn');
-//     let firstname = localStorage.getItem('fornavn');
-//     let lastname = localStorage.getItem('efternavn');
-//     let age = localStorage.getItem('alder');
-//     let description= localStorage.getItem('beskrivelse');
-//     let password = localStorage.getItem('kodeord');
-
-//     const user = new Profile(mail, firstname, lastname, age, description, password);
-//         const option = {
-//             method: 'DELETE',
-//             headers: {
-//                 'Content-Type': 'application/json'
-//         }, 
-//         body: JSON.stringify(user),
-//         };    
-//         //console.log(user);
-//         fetch(`http://localhost:4000/createUser/${mail}`, option).then(function() {
-//             console.log("ok");
-//         }).catch(function() {
-//             console.log("error");
-//         });
-        
-//         h1.textContent = "Velkommen stranger";
-//         p.textContent = "Din bruger er nu slettet";
-//         personalGreeting.textContent = "Vi håber du har fundet din soulmate";
-//         personalInfo.textContent = "Vi har ingen info om dig, Opret en bruger";
-
-//         logoutDiv.style.display = 'none';
-//         loginDiv.style.display = 'block';
-//     };
-// };
-
-
-//For create user page -with localstorage
-// document.body.onload = 
-
-// document.body.onload = 

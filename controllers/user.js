@@ -17,7 +17,7 @@ const frontpage = function(req, res){  // Hver gang denne path med http verb bli
 
 const createUser = function(req, res){  // Hver gang denne path med http verb bliver kaldt, så vil vi starte en fubnktion med 2 parametrer, req & res
     fs.readFile('./client/createUser.html', 'utf8', function(err, text){
-         res.send(text);
+        if(err){ res.send(err + "test")} else res.send(text);
      });// hver gang der kommer en get request, sender vi frontpage ud til browseren, som er en en html fil.
 };   
 
@@ -28,7 +28,7 @@ const account = function(req,res){
 };
 const login = function(req, res){  // Hver gang denne path med http verb bliver kaldt, så vil vi starte en fubnktion med 2 parametrer, req & res
     fs.readFile('./client/Login.html', 'utf8', function(err, text){
-         res.send(text);
+        if(err){ res.send(err)} else res.send(text);
      });// hver gang der kommer en get request, sender vi frontpage ud til browseren, som er en en html fil.
 };
 
@@ -50,16 +50,13 @@ const saveInput = function(req, res){
         if(storage[i].mail == prop){
             ans = "Storage has " + prop + " as property"; 
             counter++;
-            
         } else {
-            // console.log(storage)
             ans = "Storage doesnt have " + prop + " as property"; 
         }
     }
     console.log(ans)
-    console.log("counter = " + counter)
-    storage.push(req.body) // skubber body ind i vores storageObject
     if(counter  < 1){
+        storage.push(req.body) // skubber body ind i vores storageObject
             //laver vores storage object til  string og indsætter i JSON   
         fs.writeFile('user.json', JSON.stringify(storage, null, 2), (err) => {
             if (err) throw err;
@@ -68,7 +65,7 @@ const saveInput = function(req, res){
         });
         
     } else {
-        console.log( "the user is taken")
+        console.log("the user is taken")
     }
  };
 
@@ -101,36 +98,19 @@ const saveInput = function(req, res){
 };
 
 const findUser = function(req, res){
-    
-    //console.log(storage)
     const prop = req.params.mail;
     let counter = 0;
     for( var i = 0; i < storage.length; i++){ 
        counter++;
-        
         if (storage[i].mail == prop) { 
-            console.log(i);
-            console.log(storage[i]);
+            // console.log(i);
+            // console.log(storage[i]);
             
             res.send(storage[i]);
-        }
-        
-        
+        }  
     }   
-     console.log(counter)    
-    // // fs.readFile('user.json', JSON.stringify(storage[i],null, 2), (err) => {
-    // //     if (err) throw err;
-    // //     console.log(prop + ' has been read');
-    // // });
-    // res.send(storage[counter]);
 }
 
-    // console.log( mail + " this is mail")
-	// const specificUser = storage.find((user) => user.mail == mail);
- 
-    
-    // console.log(specificUser + " is specific user")
-    // console.log(storage + " in find user")
 
 
 //taget fra laura
