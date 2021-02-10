@@ -1,66 +1,50 @@
 [
   {
-    "mail": "cille",
-    "firstname": "c",
+    "mail": "al",
+    "firstname": "alex",
+    "lastname": "a",
+    "age": "29",
+    "description": "a",
+    "password": "alex"
+  },
+  {
+    "mail": "bg",
+    "firstname": "benji",
+    "lastname": "b",
+    "age": "32",
+    "description": "b",
+    "password": "benji"
+  },
+  {
+    "mail": "cl",
+    "firstname": "cille",
     "lastname": "c",
-    "age": "c",
+    "age": "28",
     "description": "c",
     "password": "cille"
   },
   {
-    "mail": "danny",
-    "firstname": "d",
+    "mail": "Dan",
+    "firstname": "dan",
     "lastname": "d",
-    "age": "d",
+    "age": "78",
     "description": "d",
-    "password": "danny"
+    "password": "dan"
   },
   {
     "mail": "emil",
     "firstname": "emil",
-    "lastname": "a",
-    "age": "a",
-    "description": "a",
-    "password": "emil"
-  },
-  {
-    "mail": "emil",
-    "firstname": "e",
     "lastname": "e",
-    "age": "e",
+    "age": "18",
     "description": "e",
     "password": "emil"
   },
   {
-    "mail": "frederik",
-    "firstname": "e",
-    "lastname": "e",
-    "age": "e",
-    "description": "e",
-    "password": "emil"
-  },
-  {
-    "mail": "georg",
-    "firstname": "g",
+    "mail": "gr",
+    "firstname": "georg",
     "lastname": "g",
-    "age": "g",
+    "age": "35",
     "description": "g",
     "password": "georg"
-  },
-  {
-    "mail": "henrik",
-    "firstname": "h",
-    "lastname": "h",
-    "age": "h",
-    "description": "h",
-    "password": "henrik"
-  },
-  {
-    "mail": "iben ",
-    "firstname": "i",
-    "lastname": "i",
-    "age": "i",
-    "description": "i",
-    "password": "iben"
   }
 ]

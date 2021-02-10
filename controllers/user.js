@@ -17,7 +17,7 @@ const frontpage = function(req, res){  // Hver gang denne path med http verb bli
 
 const createUser = function(req, res){  // Hver gang denne path med http verb bliver kaldt, så vil vi starte en fubnktion med 2 parametrer, req & res
     fs.readFile('./client/createUser.html', 'utf8', function(err, text){
-        if(err){ res.send(err + "test")} else res.send(text);
+        if(err){ res.send(err + "hej test")} else res.send(text);
      });// hver gang der kommer en get request, sender vi frontpage ud til browseren, som er en en html fil.
 };   
 
@@ -34,7 +34,7 @@ const login = function(req, res){  // Hver gang denne path med http verb bliver 
 
 const editprofile = function(req,res){
     fs.readFile('./client/edituser.html', 'utf8', function(err, text){
-        res.send(text);
+        if(err){ res.send(err)} else res.send(text);
     });// hver gang der kommer en get request, sender vi frontpage ud til browseren, som er en en html fil.
 }
 
@@ -43,13 +43,14 @@ const saveInput = function(req, res){
     
     let prop = req.body.mail;
     let counter = 0;
+
     // https://www.geeksforgeeks.org/javascript-check-if-a-key-exists-inside-a-json-object/
     // Looping through our storage object, checking if User input already exist.
     for(var i=0; i <storage.length; i++){
         console.log('test if: ' + storage[i].mail + ' is = '+ prop);
         if(storage[i].mail == prop){
             ans = "Storage has " + prop + " as property"; 
-            counter++;
+          counter++
         } else {
             ans = "Storage doesnt have " + prop + " as property"; 
         }
@@ -111,8 +112,6 @@ const findUser = function(req, res){
     }   
 }
 
-
-
 //taget fra laura
 const editUser = function(req,res){
     const mail = req.params.mail;
@@ -144,6 +143,10 @@ const editUser = function(req,res){
     fs.writeFileSync('./storage/userStorage.json', userStorage, 'utf8')
 
     res.send("Good news! Your profile has successfully been updated.")
+}
+
+const displayUsers = function(req, res){
+    res.send(storage);
 }
 
 //     let prop = req.body.mail;
@@ -213,7 +216,7 @@ const editUser = function(req,res){
         // }
 
 
-module.exports = {frontpage, createUser, login, editprofile, saveInput, deleteUser, findUser, account, editUser};
+module.exports = {frontpage, createUser, login, editprofile, saveInput, deleteUser, findUser, account, editUser, displayUsers};
 
 
 

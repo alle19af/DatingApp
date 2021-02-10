@@ -1,0 +1,87 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    height: 900px;
+    background-color: #2d2d9e;
+    color: white;
+    text-align: center;
+    background-image: linear-gradient(to bottom right,  #2d2d9e, #66ccff);
+
+}
+table {
+    width: 100%
+} 
+
+
+ input{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+} 
+
+
+#return {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+
+.InfoDiv{
+    /* text-align: center; */
+   
+    background-color: #6a6af1;
+    padding: 16px;
+    color: black;
+    margin-left: 6%;
+    margin-right: 6%;
+    border: solid;
+    border-color: white;
+}
+#submitEdit { 
+    background-color: #4CAF50;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    width: 212px;
+    padding: 10px 18px;
+}
+
+.changes { 
+    margin-left: auto;
+    margin-right: auto;
+    width: 212px;
+    padding: 10px 18px;
+}
+
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 400px) {
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 8px;
+        height: 900px;
+        background-color: #2d2d9e;
+        color: white;
+        text-align: center;
+        background-image: linear-gradient(to bottom right,  #2d2d9e, #66ccff);
+    
+    }
+
+    #edit { 
+        margin-left: auto;
+        margin-right: auto;
+        width: 212px;
+        padding: 10px 18px;
+    }
+    
+
+ 
+  #return {
+     width: 100%;
+  }
+}

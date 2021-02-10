@@ -25,12 +25,19 @@
                
            </table>
     </div><br>
-    <input id="submitEdit" type="submit" value="edit">
+    
 
     <div class="actions">
-        <div id="match"><h3> Matches</h3></div>
+        <div id="Seematch">
+            <h3> Matches</h3>
+               <p id="match"></p>
+               <button>View Profile</button>
+        </div>
 
-        <div id="like"><h3>Likes</h3></div>
+        <div id="Findmatch">
+            <h3>Likes</h3>
+            <button id="like">Like</button><p id="likes"></p> <button id="dislike">Dislike</button>
+        </div>
 
 
     </div>
@@ -42,8 +49,9 @@
             <a href="/">
                 <input id="submitlogout" type="reset" value="logout"> 
             </a>
-            
-            <input id="edit" type="button" value="Edit user">
+            <a href="/edit">
+                <input id="edit" type="button" value="Edit user">
+            </a>
         </div>
     
     <!---------------REturn to  main page-------------------->

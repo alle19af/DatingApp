@@ -29,7 +29,7 @@ server.get('/', controller.frontpage);
 server.get('/createUser', controller.createUser); //hente siden createuser
 server.get('/profile', controller.account); //henter profil siden
 server.get('/Login', controller.login); //henter login siden
-server.get('/profile/edit', controller.editprofile); // henter ændre bruger siden
+server.get('/edit', controller.editprofile); // henter ændre bruger siden
 
 //server.post('/Login', controller.findUser);
 
@@ -44,8 +44,9 @@ server.post('/createUser/:mail', cors(), controller.saveInput);// post fordi vi 
 
 server.delete('/profile/:mail', cors(), controller.deleteUser); // Sletter bruger oplsyninger fra "db"
 
-server.patch('/profile/edit/:mail', cors(), controller.editUser); //Opdatere bruger oplysninger fra "db"
+server.patch('/edit/:mail', cors(), controller.editUser); //Opdatere bruger oplysninger fra "db"
 
+server.get('/profile/:mail', cors(), controller.displayUsers);
 
 
 

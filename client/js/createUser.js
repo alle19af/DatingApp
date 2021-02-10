@@ -57,37 +57,57 @@ function saveUser(){
         let age = localStorage.getItem('alder');
         let description = localStorage.getItem('beskrivelse');
         let password = localStorage.getItem('kodeord');
-
+    
         const user = new Profile(mail, firstname, lastname, age, description, password);
 
-        // const option = {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        // }, 
-        // body: JSON.stringify(user),
+        const option = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+        }, 
+        body: JSON.stringify(user),
         
-        // };    
-        //console.log(user);
-        fetch(`http://localhost:4000/createUser/${mail}`).then(function(response) {
-            if(!Response.ok){
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
+        };    
+        // console.log(user);
+
+    //     fetch(`http://localhost:4000/createUser/${mail}`, option)
+    //         .then(response => response.text())
+    //         .then(user => {
+                
+    //             console.log("Succes: ", user);
+                
+    //             alert("You will be directed to your profile")
+    //             window.location.href = "/profile"; 
+    //         })
+    //         .catch((error)=>{
+    //             console.error("Error: ", error);
+    //             alert("Mail is already taken, if you alreadt have an account go to LOGIN")
+    //         });
+    //     }  
+    // };
+
+        fetch(`http://localhost:4000/createUser/${mail}`, option).then(function() {
+            console.log("ok");
+            alert(user.mail);
             // if(user.mail == mail){
             //     alert("Mail is already taken, if you alreadt have an account go to LOGIN")
             //     logoutDiv.style.display = 'none';
             //     loginDiv.style.display = 'block';
             // }else {
-            alert("You will be directed to your profile")
-            window.location.href = "/profile";
+        
             // } 
         }).catch(e => {
             console.log(e + " test");
+        
 
         });
+
+        alert("You will be directed to your profile")
+        window.location.href = "/profile"; 
         //hvis ikke den eksistere
     } else {
        console.log("test");
+       alert("Mail is already taken, if you alreadt have an account go to LOGIN")
     }
 };
 
