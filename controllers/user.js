@@ -14,13 +14,11 @@ const frontpage = function(req, res){  // Hver gang denne path med http verb bli
          res.send(text);
     });// hver gang der kommer en get request, sender vi frontpage ud til browseren, som er en en html fil.
 };
-
 const createUser = function(req, res){  // Hver gang denne path med http verb bliver kaldt, så vil vi starte en fubnktion med 2 parametrer, req & res
     fs.readFile('./client/createUser.html', 'utf8', function(err, text){
         if(err){ res.send(err + "hej test")} else res.send(text);
      });// hver gang der kommer en get request, sender vi frontpage ud til browseren, som er en en html fil.
 };   
-
 const account = function(req,res){
     fs.readFile('./client/profile.html', 'utf8', function(err, text){
         res.send(text);
@@ -31,12 +29,11 @@ const login = function(req, res){  // Hver gang denne path med http verb bliver 
         if(err){ res.send(err)} else res.send(text);
      });// hver gang der kommer en get request, sender vi frontpage ud til browseren, som er en en html fil.
 };
-
 const editprofile = function(req,res){
     fs.readFile('./client/edituser.html', 'utf8', function(err, text){
         if(err){ res.send(err)} else res.send(text);
     });// hver gang der kommer en get request, sender vi frontpage ud til browseren, som er en en html fil.
-}
+};
 
 // 03. Actions witd DB/ storage(skal rykkes til model)
 const saveInput = function(req, res){
@@ -68,7 +65,7 @@ const saveInput = function(req, res){
     } else {
         console.log("the user is taken")
     }
- };
+};
 
  const deleteUser = function(req, res){
     
@@ -110,7 +107,7 @@ const findUser = function(req, res){
             res.send(storage[i]);
         }  
     }   
-}
+};
 
 //taget fra laura
 const editUser = function(req,res){
@@ -142,7 +139,7 @@ const editUser = function(req,res){
     let userStorage = JSON.stringify(storage, null, 2);
     fs.writeFileSync('./storage/userStorage.json', userStorage, 'utf8')
 
-    res.send("Good news! Your profile has successfully been updated.")
+    res.send("The profile has been updayed")
 }
 
 const displayUsers = function(req, res){

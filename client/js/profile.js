@@ -23,16 +23,18 @@ class Profile {
         this.description = description;
         this.password = password;
         this.like = [];
-        this.match = [];
-    }   getMatch(Users){
+        this._match = [];
+    }   
+        getMatch(Users){ //jhbabj
             if(this.like == Users.like){
-            this.match.push(Users);
+            this._match.push(Users);
+        }; 
+    }//Privat^^
+        likeUser(User){
+            this.like.push(User)
         };
-        // likeUser(User){
-        //     this.like.push(User)
-        // };
-    };
-};
+    }; // 
+
 
 // En instans af klassen profiler
 const profile = new Profile(mail, firstname, lastname, age, description, password);
@@ -147,6 +149,6 @@ for( let i = 0; i<data.length; i ++){
     let div = document.createElement("div");
     div.innerHTML = "Name: " + data[i].firstname +  " Age: " + data[i].age + " Description: " + data[i].description;
     users.appendChild(div);
-    break;
+    // break;
     }
 }

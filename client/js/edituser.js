@@ -14,7 +14,6 @@ acceptEditBtn.style.display = 'none';
 startEditBtn.style.display = 'block';
 
 //Her henter vi fra localstorage login.js har ikke andet en usernam og pasword
-
 class Profile {
     constructor(mail, firstname, lastname, age, description, password){
         this.mail = mail;
@@ -28,7 +27,6 @@ class Profile {
 
 
 const profile = new Profile(mail, firstname, lastname, age, description, password);
-
 let newUser = [profile];
 
 
@@ -96,89 +94,103 @@ function deleteUser(){
 
 //---------------------Mangler----------------------------
 
-    let updUser = new Profile(mail, firstname, lastname, age, description, password);
-        acceptEditBtn.style.display = 'block';
-        startEditBtn.style.display = 'none';
-    let update = [updUser]
-    for(i in update){
-        table.innerHTML += 
-        "<tr><td><input>" + 
-        "</td><td><input>"  +
-        "</td><td><input>" + 
-        "</td><td><input>" + 
-        "</td><td><input>" + 
-        "</td><td><input>" + 
-        "</td></tr>"
-    }
+//SKjuler rediger knappen
+acceptEditBtn.style.display = 'block';
+startEditBtn.style.display = 'none';
+
+// Opretter felter under bruger oplysninger
+//Som der kan redigeres i
+for(i in newUser){
+    table.innerHTML += 
+    "<tr><td><input id='uname'>" + 
+    "</td><td><input id='fname'>"  +
+    "</td><td><input id='lname'>" + 
+    "</td><td><input id='alder'>" + 
+    "</td><td><input id='descr'>" + 
+    "</td><td><input id='code'>" + 
+    "</td></tr>"
+}
 
 
 // -------------------- Mangler---------------------------
+//Ved tryk på submit knappen
 acceptEditBtn.addEventListener('click', function(){
-    // acceptEditBtn.style.display = 'none';
-    // startEditBtn.style.display = 'block';
-    edit();
+    
+    //Henter værdierne der er blevet indtastet som skal ændres
+    let username = document.getElementById('uname').value
+    let fName = document.getElementById('fname').value
+    let lName = document.getElementById('lname').value
+    let alder = document.getElementById('alder').value
+    let descr = document.getElementById('descr').value
+    let code = document.getElementById('code').value
+    
+        localStorage.setItem('brugernavn', username);
+        localStorage.setItem('fornavn', fName);
+        localStorage.setItem('efternavn',lName);
+        localStorage.setItem('alder', alder);
+        localStorage.setItem('beskrivelse', descr);
+        localStorage.setItem('kodeord', code);
+    // Opretter ny instans af profile klassen
+    let updUser = new Profile(username, fName, lName, alder, descr, code);
+    let update = [updUser]; //indsætter denne i arr
+    console.log("Before Update " + update);
+    edit(update);
     
 })
 
-//--------------------- Mangler -------------------------
-function edit(){
-    let user = new Profile(mail, firstname, lastname, age, description, password);
 
+//--------------------- Mangler -------------------------
+function edit(user){
+    if(localStorage.getItem('brugernavn')){
+        if(mail) {
+            newUser.mail = user.username;
+        }
+        if(firstname) {
+            newUser.firstname = user.fName;
+        };
+        if(lastname) {
+            newUser.lastname = user.lName;
+        };
+        if(age) {
+            newUser.age = user.alder;
+        };
+        if(description) {
+            newUser.description = user.descr;
+        };
+        if(password) {
+            newUser.password = user.code;
+        };
+        console.log("After update " + newUser);
+
+        let userFromDb = new Profile(mail, firstname, lastname, age, description, password);
         const option = {
             method: 'Patch',
             headers: {
                 'Content-Type': 'application/json'
         }, 
-        body: JSON.stringify(user),
+        body: JSON.stringify(userFromDb),
         
-        };    
-        //console.log(user);
-        fetch(`http://localhost:4000/edit/${mail}`, option).then(function() {
+        };    console.log(userFromDb);
+         fetch(`http://localhost:4000/edit/${mail}`, option).then(function() {
             console.log("ok");
         }).catch(function() {
             console.log("error");
         });
-        
-        
 
-        if(localStorage.getItem('brugernavn')){
-            if(mail) {
-                newUser.mail = mail;
-            }
-            if(firstname) {
-                newUser.firstname = firstname;
-            };
-            if(lastname) {
-                newUser.lastname = lastname;
-            };
-            if(age) {
-                newUser.age = age;
-            };
-            if(description) {
-                newUser.description = description;
-            };
-            if(password) {
-                newUser.password = password;
-            };
+
+        
+        let bruger = localStorage.getItem('brugernavn');
+        let fornavn = localStorage.getItem('fornavn');
+        let efternavn = localStorage.getItem('efternavn');
+        let aar = localStorage.getItem('alder');
+        let beskrivelse = localStorage.getItem('beskrivelse');
+        let kodeord = localStorage.getItem('kodeord');
+        const finish = new Profile(bruger, fornavn, efternavn, aar, beskrivelse, kodeord)
+        
         alert("Your profile has been updated!");
         window.location.href = "/profile"; 
         
-    // for(i in user){
-    //     table.innerHTML += "<tr><td>" + 
-    //     user[i].mail + 
-    //         "</td><td>" + user[i].firstname +
-    //         "</td><td>" + user[i].lastname + 
-    //         "</td><td>" + user[i].age +
-    //         "</td><td>" + user[i].description +
-    //         "</td><td>" + user[i].password +
-    //         "</td></tr>"
-    //         break;
-    // }
-        // alert('your change has been saved') 
-// } else {
-//     acceptEditBtn.style.display = 'block';
-//     startEditBtn.style.display = 'none';
-}
 
+    }   
 }
 
