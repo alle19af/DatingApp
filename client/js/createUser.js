@@ -1,3 +1,5 @@
+
+
 // ----------- localstorage for createUser page-------------
 const form = document.querySelector('form');
 const loginDiv = document.querySelector('.createUser');
@@ -50,14 +52,12 @@ loginBtn.addEventListener('click', function(){
 
 //------------------ved tryk på submit user  kør denne funktion--------------
 function saveUser(){
-    if(localStorage.getItem('fornavn')){
-        let mail = localStorage.getItem('brugernavn');
-        let firstname = localStorage.getItem('fornavn');
-        let lastname = localStorage.getItem('efternavn');
-        let age = localStorage.getItem('alder');
-        let description = localStorage.getItem('beskrivelse');
-        let password = localStorage.getItem('kodeord');
-    
+    let mail = localStorage.getItem('brugernavn');
+    let firstname = localStorage.getItem('fornavn');
+    let lastname = localStorage.getItem('efternavn');
+    let age = localStorage.getItem('alder');
+    let description = localStorage.getItem('beskrivelse');
+    let password = localStorage.getItem('kodeord');
         const user = new Profile(mail, firstname, lastname, age, description, password);
 
         const option = {
@@ -68,23 +68,6 @@ function saveUser(){
         body: JSON.stringify(user),
         
         };    
-        // console.log(user);
-
-    //     fetch(`http://localhost:4000/createUser/${mail}`, option)
-    //         .then(response => response.text())
-    //         .then(user => {
-                
-    //             console.log("Succes: ", user);
-                
-    //             alert("You will be directed to your profile")
-    //             window.location.href = "/profile"; 
-    //         })
-    //         .catch((error)=>{
-    //             console.error("Error: ", error);
-    //             alert("Mail is already taken, if you alreadt have an account go to LOGIN")
-    //         });
-    //     }  
-    // };
 
         fetch(`http://localhost:4000/createUser/${mail}`, option).then(function() {
             console.log("ok");
@@ -105,11 +88,36 @@ function saveUser(){
         alert("You will be directed to your profile")
         window.location.href = "/profile"; 
         //hvis ikke den eksistere
-    } else {
-       console.log("test");
-       alert("Mail is already taken, if you alreadt have an account go to LOGIN")
-    }
+    // } else {
+    //    console.log("test");
+    //    alert("Mail is already taken, if you alreadt have an account go to LOGIN")
+    // }
+  
 };
+//         fetch(`http://localhost:4000/createUser/${mail}`, option)
+//         .then((response) => response.text())
+//         .then((text) => {
+//             if(!response.ok){
+//                 throw new Error(`HTTP error! status: ${response.status}`);
+//             } else 
+//             alert("You will be directed to your profile")
+//             window.location.href = "/profile"; 
+        
+//         // .then((response) => response.text()) // .json() Parse the brugeren to json
+//         // .then((text) => {
+        
+//             // console.log(text);
+//             // if(text === "User already exist" ){
+//             //     alert("Mail is already taken, if you alreadt have an account go to LOGIN")
+//             // } else {
+              
+            
+//         }).catch(e => {
+//             console.log(e + " test");
+//             alert("Mail is already taken, if you alreadt have an account go to LOGIN")
+//         });
+        
+// };
 
 
         //h1.textContent = "Velkommen "+ firstname  + " " +lastname;

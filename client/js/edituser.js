@@ -25,10 +25,8 @@ class Profile {
     }
 };
 
-
 const profile = new Profile(mail, firstname, lastname, age, description, password);
 let newUser = [profile];
-
 
 for(i in newUser){
 table.innerHTML += 
@@ -102,7 +100,7 @@ startEditBtn.style.display = 'none';
 //Som der kan redigeres i
 for(i in newUser){
     table.innerHTML += 
-    "<tr><td><input id='uname'>" + 
+    "<tr><td>Cannot be changed" + 
     "</td><td><input id='fname'>"  +
     "</td><td><input id='lname'>" + 
     "</td><td><input id='alder'>" + 
@@ -117,23 +115,23 @@ for(i in newUser){
 acceptEditBtn.addEventListener('click', function(){
     
     //Henter værdierne der er blevet indtastet som skal ændres
-    let username = document.getElementById('uname').value
+    // let username = document.getElementById('uname').value
     let fName = document.getElementById('fname').value
     let lName = document.getElementById('lname').value
     let alder = document.getElementById('alder').value
     let descr = document.getElementById('descr').value
     let code = document.getElementById('code').value
     
-        localStorage.setItem('brugernavn', username);
+        // localStorage.setItem('brugernavn', username);
         localStorage.setItem('fornavn', fName);
         localStorage.setItem('efternavn',lName);
         localStorage.setItem('alder', alder);
         localStorage.setItem('beskrivelse', descr);
         localStorage.setItem('kodeord', code);
     // Opretter ny instans af profile klassen
-    let updUser = new Profile(username, fName, lName, alder, descr, code);
+    let updUser = new Profile(mail, fName, lName, alder, descr, code);
     let update = [updUser]; //indsætter denne i arr
-    console.log("Before Update " + update);
+    //console.log("Before Update " + update);
     edit(update);
     
 })
@@ -141,9 +139,10 @@ acceptEditBtn.addEventListener('click', function(){
 
 //--------------------- Mangler -------------------------
 function edit(user){
+    //Hvis email/brugernavn eksistere - lav info om til opdateret info
     if(localStorage.getItem('brugernavn')){
         if(mail) {
-            newUser.mail = user.username;
+            newUser.mail = user.mail;
         }
         if(firstname) {
             newUser.firstname = user.fName;
@@ -160,32 +159,43 @@ function edit(user){
         if(password) {
             newUser.password = user.code;
         };
-        console.log("After update " + newUser);
+        // Tester hvordan bruger ser ud nu
+        //console.log("After update " + newUser);
 
-        let userFromDb = new Profile(mail, firstname, lastname, age, description, password);
+        // Tester hvad vores Api sender til os fra DB
+        //let userFromDb = new Profile(mail, firstname, lastname, age, description, password);
+        
+        // let bruger = localStorage.getItem('brugernavn');
+        let fornavn = localStorage.getItem('fornavn');
+        let efternavn = localStorage.getItem('efternavn');
+        let aar = localStorage.getItem('alder');
+        let beskrivelse = localStorage.getItem('beskrivelse');
+        let kodeord = localStorage.getItem('kodeord');
+        const finish = new Profile(mail, fornavn, efternavn, aar, beskrivelse, kodeord)
         const option = {
-            method: 'Patch',
+            method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
         }, 
-        body: JSON.stringify(userFromDb),
+        body: JSON.stringify(finish),
         
-        };    console.log(userFromDb);
+        };    console.log(finish);
+
          fetch(`http://localhost:4000/edit/${mail}`, option).then(function() {
             console.log("ok");
+            // userFromDb.mail = newUser.mail;
+            // userFromDb.firstname = newUser.firstname;
+            // userFromDb.lastname = newUser.lastname;
+            // userFromDb.age = newUser.age;
+            // userFromDb.description = newUser.description;
+            // userFromDb.password = newUser.password;
         }).catch(function() {
             console.log("error");
         });
 
 
         
-        let bruger = localStorage.getItem('brugernavn');
-        let fornavn = localStorage.getItem('fornavn');
-        let efternavn = localStorage.getItem('efternavn');
-        let aar = localStorage.getItem('alder');
-        let beskrivelse = localStorage.getItem('beskrivelse');
-        let kodeord = localStorage.getItem('kodeord');
-        const finish = new Profile(bruger, fornavn, efternavn, aar, beskrivelse, kodeord)
+        
         
         alert("Your profile has been updated!");
         window.location.href = "/profile"; 

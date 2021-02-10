@@ -16,7 +16,7 @@ const frontpage = function(req, res){  // Hver gang denne path med http verb bli
 };
 const createUser = function(req, res){  // Hver gang denne path med http verb bliver kaldt, så vil vi starte en fubnktion med 2 parametrer, req & res
     fs.readFile('./client/createUser.html', 'utf8', function(err, text){
-        if(err){ res.send(err + "hej test")} else res.send(text);
+        if(err){ res.send(err + "hej test af error response")} else res.send(text);
      });// hver gang der kommer en get request, sender vi frontpage ud til browseren, som er en en html fil.
 };   
 const account = function(req,res){
@@ -38,7 +38,7 @@ const editprofile = function(req,res){
 // 03. Actions witd DB/ storage(skal rykkes til model)
 const saveInput = function(req, res){
     
-    let prop = req.body.mail;
+    let prop = req.params.mail;
     let counter = 0;
 
     // https://www.geeksforgeeks.org/javascript-check-if-a-key-exists-inside-a-json-object/
@@ -46,8 +46,10 @@ const saveInput = function(req, res){
     for(var i=0; i <storage.length; i++){
         console.log('test if: ' + storage[i].mail + ' is = '+ prop);
         if(storage[i].mail == prop){
+            //res.send("User taken message from api"); // færdiggøre søgning
             ans = "Storage has " + prop + " as property"; 
           counter++
+          
         } else {
             ans = "Storage doesnt have " + prop + " as property"; 
         }
@@ -57,14 +59,11 @@ const saveInput = function(req, res){
         storage.push(req.body) // skubber body ind i vores storageObject
             //laver vores storage object til  string og indsætter i JSON   
         fs.writeFile('user.json', JSON.stringify(storage, null, 2), (err) => {
-            if (err) throw err;
+           if (err) throw err;
             console.log(prop + ' has been written to storage');
                 // res.sendFile('/Users/alexandral.gonzalez/Desktop/Eksamen/DatingApp/client/profile.html');
-        });
-        
-    } else {
-        console.log("the user is taken")
-    }
+        });  
+    } 
 };
 
  const deleteUser = function(req, res){
@@ -118,9 +117,9 @@ const editUser = function(req,res){
     const description = req.params.description;
     const password= req.body.password;
    
-
+    //const storage = JSON.parse(fs.readFileSync('user.json'))
     const specificUser = storage.find((user) => user.mail == mail);
-
+    
     if(firstname) {
         specificUser.firstname = firstname;
     };
@@ -137,7 +136,7 @@ const editUser = function(req,res){
         specificUser.password = password;
     }
     let userStorage = JSON.stringify(storage, null, 2);
-    fs.writeFileSync('./storage/userStorage.json', userStorage, 'utf8')
+    fs.writeFileSync('/Users/alexandral.gonzalez/Desktop/1.semester/Programming/Eksamen/DatingApp/DatingApp/user.json', userStorage, 'utf8')
 
     res.send("The profile has been updayed")
 }

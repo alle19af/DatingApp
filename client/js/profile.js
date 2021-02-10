@@ -77,7 +77,7 @@ function deleteUser(){
         }, 
         body: JSON.stringify(user),
         };    
-        //console.log(user);
+        // console.log(user);
         fetch(`http://localhost:4000/profile/${mail}`, option).then(function() {
             console.log("ok");
         }).catch(function() {
@@ -102,10 +102,7 @@ function deleteUser(){
     };
 };
 
-likebtn.addEventListener("click", function() {
-    appendData();
- 
- })
+
 
 //---------------------Display likes----------------------------
 
@@ -134,7 +131,6 @@ fetch(`http://localhost:4000/profile/:${mail}`)
 //     }
 // }
 
-// ----------------- Like or dislike users--------------------
 
 
 // Viser andre brugers data, skal gerne ske pr gang
@@ -149,6 +145,28 @@ for( let i = 0; i<data.length; i ++){
     let div = document.createElement("div");
     div.innerHTML = "Name: " + data[i].firstname +  " Age: " + data[i].age + " Description: " + data[i].description;
     users.appendChild(div);
-    // break;
+    break;
+     }
+
+    //https://www.xspdf.com/resolution/56060953.html
+    var buttonsCount = 0;
+// ----------------- Like or dislike users--------------------
+likebtn.addEventListener("click", function countCLick() {
+    
+   
+    buttonsCount++;
+    console.log(buttonsCount)
+    if (buttonsCount > 0){
+        newUser.likeUser(data[i].mail)
+        console.log(newUser.like)
     }
+    
+    //newUser.likeUser(data[i].mail)
+ }) 
+
+
 }
+
+  
+
+ 
