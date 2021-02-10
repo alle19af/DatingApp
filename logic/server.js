@@ -5,7 +5,7 @@
 const express = require('express'); // Henter hele pakken express
 const fs = require('fs');
 const bodyParser = require('body-parser');
-const controller = require('./controllers/user');
+const controller = require('./user');
 const cors = require('cors')
 
 // 02. About the server
@@ -17,7 +17,7 @@ server.use(bodyParser.json()); // state that we use json data in the application
      // To get static files, use the express.static middleware from express module
 // express.static('/client'); // THis is a root argument, specifies which root directory to serve static assets
      // makes it possible to go to all static sides in my folder view
-server.use(express.static('client')); //https://expressjs.com/en/starter/static-files.html
+server.use(express.static('../client')); //https://expressjs.com/en/starter/static-files.html
 
 
 // 04. Creating the endpoints
