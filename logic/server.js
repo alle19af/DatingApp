@@ -44,6 +44,7 @@ server.post('/createUser/:mail', cors(), controller.saveInput);// post fordi vi 
 
 server.delete('/profile/:mail', cors(), controller.deleteUser); // Sletter bruger oplsyninger fra "db"
 
+server.patch('/profile/:mail', cors(), controller.editUser); //Opdatere bruger oplysninger fra "db"
 server.patch('/edit/:mail', cors(), controller.editUser); //Opdatere bruger oplysninger fra "db"
 
 server.get('/profile/:mail', cors(), controller.displayUsers);

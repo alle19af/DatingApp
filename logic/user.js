@@ -115,6 +115,7 @@ const editUser = function(req,res){
     const age = req.body.age;
     const description = req.params.description;
     const password= req.body.password;
+    const like = req.body.like;
    
     //const storage = JSON.parse(fs.readFileSync('user.json'))
     const specificUser = storage.find((user) => user.mail == mail);
@@ -133,6 +134,9 @@ const editUser = function(req,res){
     };
     if(password){
         specificUser.password = password;
+    }
+    if(like){
+        specificUser.like = like;
     }
     let userStorage = JSON.stringify(storage, null, 2);
     fs.writeFileSync('../data/user.json', userStorage, 'utf8')
