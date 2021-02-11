@@ -21,22 +21,41 @@
     "lastname": "c",
     "age": "28",
     "description": "c",
-    "password": "cille"
+    "password": "cille",
+    "like": [],
+    "match": ["krista"]
   },
   {
-    "mail": "Dan",
-    "firstname": "dan",
-    "lastname": "d",
-    "age": "78",
-    "description": "d",
-    "password": "dan"
+    "mail": "krista",
+    "firstname": "k",
+    "lastname": "k",
+    "age": "k",
+    "description": "k",
+    "password": "k",
+    "like": [
+      "al",
+      "bg",
+      "cl",
+      "emil",
+      "freddie",
+      "georg",
+      "henrik",
+      "jytte",
+      "krista",
+      "susie"
+    ]
   },
   {
-    "mail": "emil",
-    "firstname": "egon",
-    "lastname": "e",
-    "age": "e",
-    "description": "e",
-    "password": "e"
+    "mail": "susie",
+    "firstname": "pl",
+    "lastname": "pl",
+    "age": "pl",
+    "description": "kn",
+    "password": "pl",
+    "like": [
+      "al",
+      "bg",
+      "al"
+    ]
   }
 ]

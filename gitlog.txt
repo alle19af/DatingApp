@@ -1,4 +1,202 @@
+commit e2fb77578ee755d7164eef363d5f0530260922b0 (HEAD -> main, origin/main, origin/HEAD)
+Author: Alexa <alle19af@student.cbs.dk>
+Date:   Thu Feb 11 23:06:18 2021 +0100
 
+     Removing dead folders
+
+commit e9e6fc68b962779bc402bacc9e88046110f3b12b
+Author: Alexa <alle19af@student.cbs.dk>
+Date:   Thu Feb 11 23:04:28 2021 +0100
+
+    fixing git
+
+commit c611711f95df053df84f1b2fcdef6babe2e4503b
+Author: Alexa <alle19af@student.cbs.dk>
+Date:   Thu Feb 11 22:56:28 2021 +0100
+
+    final product
+
+commit fe9d174787c43707c8d0c637fc5cc8a87c352f55
+Author: Alexa <alle19af@student.cbs.dk>
+Date:   Thu Feb 11 12:14:13 2021 +0100
+
+    Likeuser
+
+:...skipping...
+commit e2fb77578ee755d7164eef363d5f0530260922b0 (HEAD -> main, origin/main, origin/HEAD)
+Author: Alexa <alle19af@student.cbs.dk>
+Date:   Thu Feb 11 23:06:18 2021 +0100
+
+     Removing dead folders
+
+commit e9e6fc68b962779bc402bacc9e88046110f3b12b
+Author: Alexa <alle19af@student.cbs.dk>
+Date:   Thu Feb 11 23:04:28 2021 +0100
+
+    fixing git
+
+commit c611711f95df053df84f1b2fcdef6babe2e4503b
+Author: Alexa <alle19af@student.cbs.dk>
+Date:   Thu Feb 11 22:56:28 2021 +0100
+
+    final product
+
+commit fe9d174787c43707c8d0c637fc5cc8a87c352f55
+Author: Alexa <alle19af@student.cbs.dk>
+Date:   Thu Feb 11 12:14:13 2021 +0100
+
+    Likeuser
+
+commit eabd07ea6c5f8deaa5eb5de3238fa27397504019
+Author: Alexa <alle19af@student.cbs.dk>
+Date:   Wed Feb 10 19:27:39 2021 +0100
+
+    folder structure
+
+commit b69441d37903518be804e6e5c7a9929f53f45748
+Author: Alexa <alle19af@student.cbs.dk>
+Date:   Wed Feb 10 18:53:36 2021 +0100
+
+    architecture
+
+commit 1c8d3d52f42c6fbf518540136a6d5603d5272cb1
+Author: Alexa <alle19af@student.cbs.dk>
+Date:   Wed Feb 10 13:41:15 2021 +0100
+
+    Edituser almost done
+
+commit 6e82b07112326a49f42b02b853dcf4e09ae3d967
+Author: Alexa <alle19af@student.cbs.dk>
+Date:   Wed Feb 10 09:44:30 2021 +0100
+
+    edit user & like
+
+commit f00135a55697a359c2f176e0fa691b378101e124
+Author: Alexa <alle19af@student.cbs.dk>
+Date:   Tue Feb 9 19:11:04 2021 +0100
+
+    login finished
+
+commit fbdd188bcaacf69467902e79a1a8cc3ca9981829
+Author: Alexa <alle19af@student.cbs.dk>
+Date:   Tue Feb 9 15:38:38 2021 +0100
+
+    changes
+
+commit fe220a566590d3ed85986a853e499036806a826d
+Author: Alexa <alle19af@student.cbs.dk>
+Date:   Wed Dec 9 02:12:51 2020 +0100
+
+    trying requirements
+
+commit d71690ec108e04ad4f220691f74b25e8ccfa825e
+Author: Alexa <alle19af@student.cbs.dk>
+Date:   Tue Dec 8 23:19:48 2020 +0100
+
+    get user if it already exist
+
+commit 5c7f85d06125ae44e6dd277cdb1d478b8d7fc103
+Author: Alexa <alle19af@student.cbs.dk>
+Date:   Tue Dec 8 20:22:10 2020 +0100
+
+    delete user works
+
+commit 6c1ba2ffc153cbbf29d9cb9e688ec0301359a80b
+Author: Alexa <alle19af@student.cbs.dk>
+Date:   Tue Dec 8 13:47:49 2020 +0100
+
+    trying to make requirements work
+
+commit 34bc75ecc2fae4b3913e2df7f3aa5ca9f908bbc7
+Author: Alexa <alle19af@student.cbs.dk>
+Date:   Mon Dec 7 19:38:35 2020 +0100
+
+    start deleting users
+
+commit 7f50bedd2371f452bbca959b43e7602493946a3f
+Author: Alexa <alle19af@student.cbs.dk>
+Date:   Mon Dec 7 13:55:54 2020 +0100
+
+    design
+
+commit 99153fe3efd066eef40922eb362a8835fb0c5f58
+Author: Alexa <alle19af@student.cbs.dk>
+Date:   Mon Dec 7 00:40:29 2020 +0100
+
+    check if user exist
+
+commit a09f9977a2a56dbbec3c3aa3f0acf4b0ed638221
+Author: Alexa <alle19af@student.cbs.dk>
+Date:   Sun Dec 6 19:51:59 2020 +0100
+
+    connecting JSON
+
+commit 8c3910274ee618574823b67e177eb8f4dbc9d7d0
+Author: Alexa <alle19af@student.cbs.dk>
+Date:   Tue Dec 1 13:30:49 2020 +0100
+
+    localstorage work
+
+commit 34200cea5faa6d45a10c90ca2bb98d1cafa14dc8
+Author: Alexa <alle19af@student.cbs.dk>
+Date:   Tue Dec 1 10:12:06 2020 +0100
+
+    folder structure for local storage
+
+commit c8f23e233c6f4ca22eb1ffc3991305160e848e24 (connectLocalStorage)
+Author: Alexa <alle19af@student.cbs.dk>
+Date:   Mon Nov 30 17:40:38 2020 +0100
+
+    Paths done for html files
+
+commit 3174162063c3e3f5281eb0980d9465b6a9f78780
+Author: Alexa <alle19af@student.cbs.dk>
+Date:   Mon Nov 30 13:14:22 2020 +0100
+
+    connecting pages with http request
+
+commit aa43d8a4edce977e60fe6a6afebf9a97f8d8160a
+Author: Alexa <alle19af@student.cbs.dk>
+Date:   Sun Nov 29 15:38:24 2020 +0100
+
+    Getting folders connected
+
+commit d27441ee5508a8d7907f8ed5d649d12b79e60629
+Author: Alexa <alle19af@student.cbs.dk>
+Date:   Sun Nov 29 15:02:17 2020 +0100
+
+    Fixing what each folders should contain
+
+commit 5d708911e6fca2df959b6836786df31bca574702
+Merge: a60df06 1f9f41c
+Author: Alexa <alle19af@student.cbs.dk>
+Date:   Sun Nov 29 01:11:57 2020 +0100
+
+    Merge branch 'main' of https://github.com/alle19af/DatingApp into main
+
+commit a60df06f23baa51141679fb2ee9877e24160b995
+Author: Alexa <alle19af@student.cbs.dk>
+Date:   Sun Nov 29 01:11:07 2020 +0100
+
+    Making localstorage work
+
+commit 1f9f41c595d9f3906676f392c3bcf3f73009d79a
+Author: alle19af <55435577+alle19af@users.noreply.github.com>
+Date:   Sun Nov 29 01:04:57 2020 +0100
+
+    Delete extra index.html file
+
+commit d7bf8d4b4d25d1f63485965cc6bc11e18b84119b
+Author: Alexa <alle19af@student.cbs.dk>
+Date:   Sun Nov 29 01:00:21 2020 +0100
+
+    getting server up and running
+
+commit 29c9c543ff2152369483b2d8078a4ea066cc586c
+Author: alle19af <55435577+alle19af@users.noreply.github.com>
+Date:   Sat Nov 28 10:24:28 2020 +0100
+
+    Initial commit
 
 
 

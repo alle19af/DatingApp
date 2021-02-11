@@ -1,12 +1,10 @@
-// ----------- localstorage for createUser page-------------
-
-//Lauras kode
-// For fat på brugernavn og kodeord ved login
+// ----------- localstorage for LOGIN page-------------
+// Henter oplysningerne igennem id eller class fra HTML siden
 const userName = document.querySelector('#username');
 const passWord = document.querySelector('#password');
 const loginBtn = document.querySelector('#submitlogin');
 
-// Skal ikke bruges til noget endnu
+// ------------------ Opretter klassen Profile--------------------
 class Profile {
     constructor(mail, firstname, lastname, age, description, password){
         this.mail = mail;
@@ -18,40 +16,40 @@ class Profile {
     }
 };
 
-// Ved login bruges localstorage til at gemme/huske disse værdier
-// og vi kalder funktionen login
+// ----------Ved tryk på login knap, sættes mail og kode i localstorage --------
 loginBtn.addEventListener('click', function(){
         localStorage.setItem('brugernavn', userName.value);
         localStorage.setItem('kodeord', passWord.value);
-        logIn();//overvej om vi skal indhente bruger og kode som parametrer
+        logIn();//køre funktionen logIn hver gang knappen trykkes på
 });
 
-// Log in function
+// ----------------Log in funktionen der reagere ved klik på login knap--------------------
 function logIn() {
     var mail = userName.value;
     var password = passWord.value;
         
-    // Et promise, der henter brugeren med denne mail, brugeren gives tilbage som respons
+    // 01. Et promise, der henter brugeren med denne mail, hele bruger objektet gives tilbage som respons
     fetch(`http://localhost:4000/Login/${mail}`)
-    .then((response) => response.json()) // .json() Parse the brugeren to json
-    .then((text) => {
-    console.log(text + "test"); // der console logges ObjecObject
+    .then((response) => response.json()) // et promise der "resolves" som et javascript object, response skal være json format
+    .then((text) => { 
+    // console.log(text + "test"); // Her testes text output
           
-        // Hvis objektet.mail = mail og objekt.password = Passwword
+        // 02. Hvis text.mail = den inputtede mail og text.password = input Passwword
         if (text.mail == mail && text.password == password){
 
-            //sætter resten af brugeroplysninger i localstorage så de kan hentes og bruges i profilen
+            //03. Så sættes resten af brugeroplysninger i localstorage så de kan hentes og bruges i profilen
             localStorage.setItem('fornavn', text.firstname);
             localStorage.setItem('efternavn', text.lastname);
             localStorage.setItem('alder', text.age);
             localStorage.setItem('beskrivelse', text.description)
             
-            /*test*/ alert(text.firstname)
+            //alert(text.firstname) test for at de rigtige informationer blev sat i localstorage
 
-            //naviger til ny side
+            //04. Naviger til brugerens profil hvis alt ovenstående lykkes
             window.location.href = "/profile";
             alert("Log in succesful! We just can't seem to forget you, so this is just a quick reminder: remember to log out after use if you're on a public computer.")
         } else {
+            // 05. lykkes det ikke:
             alert("Looks like the e-mail or password is incorret. Please try again or sign up to create an account.")
         };
     }).catch( e => {

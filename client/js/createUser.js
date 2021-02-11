@@ -1,6 +1,5 @@
-
-
-// ----------- localstorage for createUser page-------------
+// ----------- localstorage for CREATERUSER page-------------
+// Henter oplysningerne igennem id eller class fra HTML siden
 const form = document.querySelector('form');
 const loginDiv = document.querySelector('.createUser');
 const logoutDiv = document.querySelector('.changes');
@@ -15,12 +14,9 @@ const deleteBtn = document.querySelector('#delete');
 const logoutBtn = document.querySelector('#submitlogout');
 const h1 = document.querySelector('h1');
 const p = document.querySelector('#todo');
-// const personalGreeting = document.querySelector('.personal-greeting');
-// const personalInfo = document.querySelector('.personal-information');
 
-// logoutDiv.style.display = 'none';
-// loginDiv.style.display = 'none';
 
+// ------------------ Opretter klassen Profile--------------------
 class Profile {
     constructor(mail, firstname, lastname, age, description, password){
         this.mail = mail;
@@ -28,7 +24,8 @@ class Profile {
         this.lastname = lastname;
         this.age = age;
         this.description = description;
-        this.password = password;
+        this.password = password; 
+        // Bemærk at der ikke er like eller match eller metoder med, da disse er undværlige ved oprettelse af bruger
     }
 };
 
@@ -38,91 +35,53 @@ form.addEventListener('click', function(e){
 });
 
 
-// Sætter "item, til at være værdien af input fra useren og bruger dem senere"
-loginBtn.addEventListener('click', function(){
+// Sætter bruger input i localstorage, til at være værdien af input fra useren og bruger dem senere"
+loginBtn.addEventListener('click', function(){ // Dette gøres når der klikkes på submit 
     localStorage.setItem('brugernavn', usernameInput.value);
     localStorage.setItem('fornavn', nameInput.value);
     localStorage.setItem('efternavn', lastnameInput.value);
     localStorage.setItem('alder', ageInput.value);
     localStorage.setItem('beskrivelse', descrInput.value);
     localStorage.setItem('kodeord', passCodeInput.value);
-    saveUser() //køre denne funktion hver gang knappen trykkes på
+    saveUser() //køre funktionen saveUser hver gang knappen trykkes på
 });
 
 
-//------------------ved tryk på submit user  kør denne funktion--------------
+//------------------ved tryk på submit user køre denne funktion--------------
 function saveUser(){
+    // ------------- 01. Først gemmes alle bruger input i localstorage------
     let mail = localStorage.getItem('brugernavn');
     let firstname = localStorage.getItem('fornavn');
     let lastname = localStorage.getItem('efternavn');
     let age = localStorage.getItem('alder');
     let description = localStorage.getItem('beskrivelse');
     let password = localStorage.getItem('kodeord');
+        // -------- 02. Dernæst oprettes en instans af klassen Profile
         const user = new Profile(mail, firstname, lastname, age, description, password);
 
+        // -------- 03. Denne instans bruges til at sende til databasen ved hjælp af HTTP req POST
         const option = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
         }, 
-        body: JSON.stringify(user),
-        
+        body: JSON.stringify(user),  // Konvertere klassen til en json string
         };    
 
-        fetch(`http://localhost:4000/createUser/${mail}`, option).then(function() {
-            console.log("ok");
-            alert(user.mail);
-            // if(user.mail == mail){
-            //     alert("Mail is already taken, if you alreadt have an account go to LOGIN")
-            //     logoutDiv.style.display = 'none';
-            //     loginDiv.style.display = 'block';
-            // }else {
-        
-            // } 
-        }).catch(e => {
-            console.log(e + " test");
-        
-
+        // --------- 04. Her benyttes fetch til at kontakte API og dermed indsætte bruger i DB
+        fetch(`http://localhost:4000/createUser/${mail}`, option) // option er defineret ovenover hvor klassen er konveretet til korretke format
+        .then(function(response) {  //vi tager response og laver det om til text
+            response.text()
+            .then(function(text) {  // så tager vi texten som parameter i ny funtion
+                if(text == "It worked"){    // Tester for succes kriterier
+                    alert("You will be directed to your new profile")
+                    window.location.href = "/profile"; 
+                } else if(text == "User is taken"){ // Hvis ikke succes kan man ikke oprette bruger
+                    alert("User is already taken, do you have a user go to login")
+                }
+        }).catch(e => { // Hvis , error udskriv dette i browser console
+            console.log(e + " test");// tilføjet test for at finde ud af hvilken af mange errors der kom frem
+            alert("Something went wrong try again later"); //Viser ikke brugeren hvad fejlen er med vilje.
         });
-
-        alert("You will be directed to your profile")
-        window.location.href = "/profile"; 
-        //hvis ikke den eksistere
-    // } else {
-    //    console.log("test");
-    //    alert("Mail is already taken, if you alreadt have an account go to LOGIN")
-    // }
-  
+    });
 };
-//         fetch(`http://localhost:4000/createUser/${mail}`, option)
-//         .then((response) => response.text())
-//         .then((text) => {
-//             if(!response.ok){
-//                 throw new Error(`HTTP error! status: ${response.status}`);
-//             } else 
-//             alert("You will be directed to your profile")
-//             window.location.href = "/profile"; 
-        
-//         // .then((response) => response.text()) // .json() Parse the brugeren to json
-//         // .then((text) => {
-        
-//             // console.log(text);
-//             // if(text === "User already exist" ){
-//             //     alert("Mail is already taken, if you alreadt have an account go to LOGIN")
-//             // } else {
-              
-            
-//         }).catch(e => {
-//             console.log(e + " test");
-//             alert("Mail is already taken, if you alreadt have an account go to LOGIN")
-//         });
-        
-// };
-
-
-        //h1.textContent = "Velkommen "+ firstname  + " " +lastname;
-        // p.textContent = "du kan nu explore the dating world";
-        // personalGreeting.textContent = "Velkommen til vores hjemmeside " + firstname;
-        // personalInfo.textContent = " Her er lidt info om dig " + firstname + " : Din alder er " + age + ", din mail er:  " + mail + ".  " +  ". Dit valgte kodeord er: " + password;
-        // logoutDiv.style.display = 'block';
-        // loginDiv.style.display = 'none';
