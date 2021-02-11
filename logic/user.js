@@ -1,5 +1,5 @@
-// Controllers holds the functionality - the actions¨
-// deals with logic
+// Controllers holds the functionality
+// the actions deals with logic
 
 // 01. Connections
 const fs = require('fs');
@@ -34,38 +34,41 @@ const editprofile = function(req,res){
     });// hver gang der kommer en get request, sender vi frontpage ud til browseren, som er en en html fil.
 };
 
-// 03. Actions witd DB/ storage(skal rykkes til model)
+// 03. Tilføjer ny bruger til databasen
 const saveInput = function(req, res){
-    
-    let prop = req.params.mail;
-    let counter = 0;
-
+    let prop = req.params.mail; //henter mail fra bruger input
+    let counter = 0; // Opretter counter til at tælle om brugen eksistere i DB
+   
     // https://www.geeksforgeeks.org/javascript-check-if-a-key-exists-inside-a-json-object/
-    // Looping through our storage object, checking if User input already exist.
+    // Looping igennem storage object, checker om brugeren eksistere
     for(var i=0; i <storage.length; i++){
+        // udskriver i console de bruger vi går igennem og sammenligner med nyt brugernavn
         console.log('test if: ' + storage[i].mail + ' is = '+ prop);
+        // Hvis brugernavn eksistere i DB Stop søgning
         if(storage[i].mail == prop){
-            //res.send("User taken message from api"); // færdiggøre søgning
-            ans = "Storage has " + prop + " as property"; 
-          counter++
-          
+            //ans = "Storage has " + prop + " as property"; 
+            counter++
+            break;// færdiggøre søgningen, stopper loop
         } else {
+            // Hvis ikke brugeren eksistere
             ans = "Storage doesnt have " + prop + " as property"; 
         }
     }
+    // Tjekker hvilket svar vi har fået således vi kan sammenligne frontend med hvad der sker backend
     console.log(ans)
+
+    //Hvis brugeren eksistere er counter mere end 0
     if(counter  < 1){
-        storage.push(req.body) // skubber body ind i vores storageObject
-            //laver vores storage object til  string og indsætter i JSON   
-        fs.writeFile('../data/user.json', JSON.stringify(storage, null, 2), (err) => {
-           if (err) throw err;
-            console.log(prop + ' has been written to storage');
-                // res.sendFile('/Users/alexandral.gonzalez/Desktop/Eksamen/DatingApp/client/profile.html');
-        });  
-    } 
+        storage.push(req.body) // skubber brugeren ind i storage objektet
+        //Skriver i filen user.json (DB) og laver vores storage om til JSON format således vi kan skrive brugeren ind der også er lavet om til JSON  
+        fs.writeFile('../data/user.json', JSON.stringify(storage, null, 2), ()=> {
+            res.send("It worked"); // svar tilbage til klient siden
+            //console.log(prop + ' has been written to storage');
+        });
+    } else {res.status(500).send("User is taken")};// Svar der  sendes tilbage til klient
 };
 
- const deleteUser = function(req, res){
+const deleteUser = function(req, res){
     
     let prop = req.body.mail;
     console.log(prop)
@@ -145,8 +148,14 @@ const editUser = function(req,res){
 }
 
 const displayUsers = function(req, res){
-    res.send(storage);
-}
+    if(res.status(200)){
+        res.send(storage);
+    } else {
+        res.send(status);
+    }
+};
+ 
+     
 
 
 module.exports = {frontpage, createUser, login, editprofile, saveInput, deleteUser, findUser, account, editUser, displayUsers};
